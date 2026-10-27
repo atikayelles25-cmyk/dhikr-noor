@@ -1,181 +1,409 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dhikr Noor — aperçu</title>
+<meta name="description" content="Dhikr Noor — un espace apaisant pour le rappel, la lecture et l'apprentissage.">
+<title>Dhikr Noor — Le rappel au cœur de chaque journée</title>
 <style>
 :root {
-  --site-primary: #006B54;
-  --site-secondary: #D9B66D;
-  --site-background: #F6F0E3;
-  --site-on-primary: #FFF9E9;
-  --site-on-secondary: #17231D;
-  --site-on-background: #17231D;
-  --site-font-body: "Trebuchet MS", Arial, sans-serif;
+  color-scheme: light;
+  --site-primary: #075846;
+  --site-secondary: #D8B66D;
+  --site-background: #F7F3E9;
+  --site-on-primary: #FFFFFF;
+  --site-on-secondary: #18372F;
+  --site-on-background: #19382F;
+  --site-font-body: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --site-font-heading: Georgia, "Times New Roman", serif;
   --site-heading-scale: 1;
   --site-spacing-scale: 1;
   --site-radius-scale: 1;
   --site-decoration-opacity: 1;
+  --surface: light-dark(#FFFEFA, #192B26);
+  --surface-soft: light-dark(#EEE8D9, #223830);
+  --text: light-dark(#19382F, #F5F0E5);
+  --muted: light-dark(#66766D, #C0CFC6);
+  --border: light-dark(#DCD7C8, #3B5148);
+  --shadow: 0 12px 30px rgba(14, 50, 39, .08);
 }
+:root[data-theme="dark"] {
+  --site-background: #14251F;
+  --site-on-background: #F5F0E5;
+  --surface: #192B26;
+  --surface-soft: #223830;
+  --text: #F5F0E5;
+  --muted: #C0CFC6;
+  --border: #3B5148;
+}
+:root[data-theme="dark"] .counter-number { color: var(--site-secondary); }
+:root[data-theme="dark"] .card-icon { color: var(--site-secondary); }
 * { box-sizing: border-box; }
-body { margin: 0; font-family: var(--site-font-body); color: var(--site-on-background); background: var(--site-background); }
-#app { min-height: 100%; width: 100%; background-color: var(--site-background); color: var(--site-on-background); }
-.topbar { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:14px clamp(16px,4vw,42px); background:var(--site-primary); color:var(--site-on-primary); border-bottom:1px solid #b99142; }
-.brand { display:flex; align-items:center; gap:10px; min-width:0; }
-.logo { display:grid; place-items:center; width:42px; height:42px; flex-shrink:0; border:1px solid var(--site-secondary); border-radius:50%; color:var(--site-secondary); font-size:24px; }
-.brand h1 { margin:0; font-family:var(--site-font-heading); font-size:calc(23px * var(--site-heading-scale)); letter-spacing:1.5px; color:var(--site-secondary); }
-.brand small { display:block; font-size:11px; opacity:.85; }
-.langs { display:flex; gap:4px; }
-.langs button { border:1px solid var(--site-secondary); color:var(--site-on-primary); background:transparent; border-radius:18px; padding:7px 11px; cursor:pointer; }
-.langs button.active { background:var(--site-secondary); color:var(--site-on-secondary); }
-.hero { background:linear-gradient(145deg,#004735,#008568 70%,#00624d); color:#fff7df; padding:34px 20px 28px; text-align:center; position:relative; overflow:hidden; }
-.hero:before { content:'☾'; position:absolute; top:2px; right:7%; font-size:68px; color:#d9b66d; opacity:calc(.16 * var(--site-decoration-opacity)); }
-.hero .eyebrow { color:var(--site-secondary); letter-spacing:2px; font-size:11px; text-transform:uppercase; }
-.hero h2 { font-family:var(--site-font-heading); color:#f1d28a; font-size:calc(clamp(28px,5vw,44px) * var(--site-heading-scale)); margin:12px 0 8px; font-weight:normal; }
-.hero p { margin:0 auto 18px; max-width:520px; line-height:1.6; }
-.search { max-width:550px; margin:auto; display:flex; gap:8px; background:#fffaf0; border-radius:24px; padding:5px; }
-.search input { min-width:0; flex:1; border:0; outline:none; background:transparent; padding:10px 13px; font-size:15px; color:#17231d; }
-.search button, .primary-btn { border:0; border-radius:20px; background:var(--site-secondary); color:#17231d; font-weight:bold; padding:11px 16px; cursor:pointer; }
-main { max-width:1100px; margin:auto; padding:24px clamp(14px,3vw,30px) 40px; }
-.section-title { display:flex; justify-content:space-between; align-items:end; gap:10px; margin:22px 0 13px; }
-.section-title h3 { margin:0; font-family:var(--site-font-heading); font-size:calc(23px * var(--site-heading-scale)); color:var(--site-primary); }
-.section-title p { margin:5px 0 0; color:#68756d; font-size:13px; }
-.feature-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
-.feature { text-align:left; border:1px solid #d7c38f; border-radius:15px; background:#fffaf0; padding:18px 15px; min-height:130px; cursor:pointer; color:#173d32; transition:transform .15s, border-color .15s; }
-.feature:hover { transform:translateY(-2px); border-color:#b99142; }
-.feature .ico { display:block; font-size:27px; margin-bottom:12px; color:#9a7429; }
-.feature strong { display:block; font-size:15px; }
-.feature small { display:block; margin-top:5px; color:#6c756e; line-height:1.4; }
-.panel { background:#fffaf0; border:1px solid #dfd2b1; border-radius:18px; padding:20px; }
-.two-col { display:grid; grid-template-columns:1.2fr .8fr; gap:14px; }
-.dhikr-panel { background:linear-gradient(150deg,#00503d,#008568); color:#fff7df; border:1px solid #b99142; border-radius:18px; padding:22px; text-align:center; }
-.dhikr-panel .arabic { font-size:30px; margin:14px 0 5px; line-height:1.7; }
-.dhikr-panel .translit { color:#e6ca83; font-size:14px; }
-.counter { font-size:56px; font-family:var(--site-font-heading); color:#f0ce7d; margin:8px 0; }
-.counter-actions { display:flex; align-items:center; justify-content:center; gap:16px; }
-.round { width:52px; height:52px; border-radius:50%; border:1px solid #d9b66d; background:#d9b66d; color:#102a22; font-size:27px; cursor:pointer; }
-.round.secondary { background:transparent; color:#f6e8c3; }
-.reset { margin-top:14px; border:1px solid #d9b66d; color:#f6e8c3; background:transparent; border-radius:18px; padding:8px 16px; cursor:pointer; }
-.surah-list { display:grid; gap:8px; }
-.surah { display:flex; align-items:center; gap:10px; padding:11px; border:1px solid #e3d7bd; border-radius:12px; background:#fffdf7; }
-.surah .number { display:grid; place-items:center; border:1px solid #c8a95d; border-radius:50%; width:34px; height:34px; color:#8c6c25; flex-shrink:0; }
-.surah .surah-info { flex:1; min-width:0; }
-.surah strong { display:block; font-size:14px; }
-.surah small { color:#69766e; }
-.surah .arabic { font-size:18px; color:#174638; }
-.play { border:1px solid #c5ad70; border-radius:50%; width:36px; height:36px; background:#f5ebd2; cursor:pointer; }
-.kids { display:grid; grid-template-columns:1fr 1fr; gap:14px; align-items:center; background:#00765c; color:#fff5d9; border-radius:18px; padding:20px; }
-.kids h4 { font-family:var(--site-font-heading); font-size:24px; color:#e9c978; margin:0 0 8px; }
-.kids p { line-height:1.6; font-size:14px; }
-.kids .illustration { text-align:center; font-size:65px; }
-.kids .kid-buttons { display:flex; gap:8px; flex-wrap:wrap; }
-.kid-buttons button { background:#f8efd9; border:0; color:#163e33; border-radius:12px; padding:10px 12px; cursor:pointer; }
-.note { font-size:12px; color:#657168; line-height:1.5; margin-top:10px; }
-.page { display:none; }
-.page.active { display:block; }
-.back { border:0; background:transparent; color:#174638; padding:0 0 12px; cursor:pointer; font-weight:bold; }
-.reader-arabic { direction:rtl; text-align:right; font-size:25px; line-height:2.2; color:#123d31; border-bottom:1px solid #e5d9bd; padding:12px 0; }
-.reader-translation { line-height:1.7; color:#4b5d52; padding:6px 0 15px; }
-.select { width:100%; padding:12px; border:1px solid #d9c99e; border-radius:10px; background:#fffdf7; font-size:15px; margin:8px 0; }
-footer { background:#062a23; color:#e8d39c; padding:20px; text-align:center; font-size:12px; }
-.nav { display:flex; justify-content:center; gap:8px; flex-wrap:wrap; padding:13px; background:#092f27; }
-.nav button { background:transparent; color:#fff3d5; border:1px solid #547368; border-radius:18px; padding:9px 13px; cursor:pointer; }
-.nav button.active { background:#d9b66d; color:#17231d; border-color:#d9b66d; }
-[dir="rtl"] .section-title { flex-direction:row-reverse; }
-@media(max-width:650px) { .feature-grid {grid-template-columns:repeat(2,minmax(0,1fr));} .two-col {grid-template-columns:1fr;} .kids {grid-template-columns:1fr;} .kids .illustration {order:-1;} .brand h1 {font-size:19px;} .brand small {display:none;} .topbar {padding:11px 13px;} .hero {padding:27px 15px;} main {padding-top:12px;} }
-@media(prefers-reduced-motion:reduce) { * {transition:none!important;scroll-behavior:auto!important;} }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: var(--site-font-body); background: var(--site-background); color: var(--text); }
+#app { min-height: 100vh; width: 100%; border-radius: 0; background-color: var(--site-background); color: var(--site-on-background); overflow: hidden; }
+button, input, select { font: inherit; }
+button { cursor: pointer; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid #C49A43; outline-offset: 3px; }
+.topbar { background: var(--site-primary); color: var(--site-on-primary); border-bottom: 1px solid rgba(255,255,255,.13); }
+.nav { max-width: 1180px; margin: auto; padding: 16px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.brand { display:flex; align-items:center; gap:12px; color:inherit; text-decoration:none; }
+.logo { width:44px; height:44px; border:1px solid rgba(226,197,127,.8); border-radius:50%; display:grid; place-items:center; color:var(--site-secondary); font-size:25px; background:rgba(255,255,255,.06); }
+.brand strong { display:block; font: 700 calc(1.35rem * var(--site-heading-scale)) var(--site-font-heading); letter-spacing:.02em; }
+.brand small { display:block; color:#E4DCC9; font-size:.75rem; margin-top:2px; }
+.nav-right { display:flex; align-items:center; gap:10px; }
+.nav-links { display:flex; align-items:center; gap:6px; }
+.nav-links a { color:#F7F2E7; text-decoration:none; padding:10px 12px; border-radius:10px; font-size:.92rem; }
+.nav-links a:hover { background:rgba(255,255,255,.1); }
+.lang-btn, .menu-btn { border:1px solid rgba(255,255,255,.35); color:#fff; background:transparent; padding:9px 12px; border-radius:999px; }
+.menu-btn { display:none; }
+main { max-width:1180px; margin:auto; padding:28px 22px 64px; }
+.hero { position:relative; display:grid; grid-template-columns:1.25fr .75fr; gap:28px; align-items:center; background:var(--site-primary); color:white; border-radius:calc(28px * var(--site-radius-scale)); padding:clamp(28px,5vw,58px); overflow:hidden; box-shadow:var(--shadow); }
+.hero:after { content:"☾"; position:absolute; right:8%; top:-58px; font-size:clamp(170px,27vw,330px); color:var(--site-secondary); opacity:calc(.12 * var(--site-decoration-opacity)); pointer-events:none; line-height:1; }
+.eyebrow { color:var(--site-secondary); text-transform:uppercase; letter-spacing:.16em; font-size:.76rem; font-weight:800; }
+h1,h2,h3 { font-family:var(--site-font-heading); }
+h1 { font-size:calc(clamp(2.4rem,5vw,4.6rem) * var(--site-heading-scale)); line-height:1.04; margin:14px 0 18px; font-weight:600; }
+.hero p { color:#E6EEE8; max-width:560px; line-height:1.75; font-size:1.04rem; }
+.hero-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:25px; }
+.btn { display:inline-flex; justify-content:center; align-items:center; gap:8px; border:1px solid transparent; border-radius:999px; padding:12px 18px; font-weight:750; text-decoration:none; transition:transform .15s ease, background .15s ease; }
+.btn:hover { transform:translateY(-1px); }
+.btn-gold { background:var(--site-secondary); color:var(--site-on-secondary); }
+.btn-outline { border-color:rgba(255,255,255,.48); color:white; background:transparent; }
+.hero-art { position:relative; z-index:1; display:grid; place-items:center; min-height:220px; }
+.mandala { width:min(100%,280px); aspect-ratio:1; border:1px solid rgba(216,182,109,.65); border-radius:50%; display:grid; place-items:center; position:relative; }
+.mandala:before,.mandala:after { content:""; position:absolute; inset:13%; border:1px solid rgba(216,182,109,.5); transform:rotate(45deg); border-radius:32%; }
+.mandala:after { transform:rotate(22.5deg); inset:20%; }
+.mandala-inner { text-align:center; color:var(--site-secondary); z-index:1; }
+.mandala-inner .arabic { font-size:clamp(2.3rem,5vw,3.5rem); line-height:1.4; }
+.mandala-inner span { display:block; font-size:.8rem; letter-spacing:.14em; text-transform:uppercase; color:#E8D7AB; }
+.section-head { display:flex; align-items:end; justify-content:space-between; gap:16px; margin:42px 0 18px; }
+.section-head h2 { font-size:calc(2rem * var(--site-heading-scale)); margin:0 0 5px; }
+.section-head p { color:var(--muted); margin:0; }
+.grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+.card { background:var(--surface); border:1px solid var(--border); border-radius:calc(20px * var(--site-radius-scale)); padding:22px; box-shadow:var(--shadow); min-width:0; }
+.card-icon { width:46px; height:46px; border-radius:14px; display:grid; place-items:center; color:var(--site-primary); background:light-dark(#E9E1CC,#2E493E); font-size:1.35rem; margin-bottom:16px; }
+.card h3 { font-size:1.35rem; margin:0 0 8px; }
+.card p { color:var(--muted); line-height:1.6; margin:0 0 16px; }
+.text-link { color:light-dark(#075846,#D8B66D); font-weight:800; text-decoration:none; }
+.text-link:hover { text-decoration:underline; }
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.counter-card { background:var(--surface); border:1px solid var(--border); border-radius:calc(22px * var(--site-radius-scale)); padding:26px; text-align:center; }
+.counter-display { width:190px; height:190px; margin:20px auto; border-radius:50%; border:8px solid var(--site-secondary); box-shadow:inset 0 0 0 7px var(--surface-soft); display:grid; place-items:center; background:var(--surface); }
+.counter-number { font:600 3.5rem var(--site-font-heading); color:var(--site-primary); }
+.counter-label { font-size:.78rem; color:var(--muted); }
+.counter-controls { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
+.counter-controls .btn { min-width:105px; }
+.btn-primary { background:var(--site-primary); color:white; }
+.btn-soft { background:var(--surface-soft); color:var(--text); border-color:var(--border); }
+.progress-track { height:8px; border-radius:99px; background:var(--surface-soft); overflow:hidden; margin:16px 0 8px; }
+.progress-fill { height:100%; width:0%; background:var(--site-secondary); transition:width .2s ease; }
+.form-row { display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:center; }
+.form-row label { color:var(--muted); font-size:.9rem; }
+select,input[type="text"] { background:var(--surface); color:var(--text); border:1px solid var(--border); border-radius:10px; padding:10px 12px; max-width:100%; }
+.invocation { margin-top:14px; padding:18px; border-radius:14px; background:var(--surface-soft); }
+.arabic { direction:rtl; font-family: "Noto Naskh Arabic", "Amiri", "Traditional Arabic", serif; line-height:1.9; }
+.invocation .arabic { font-size:1.8rem; text-align:right; color:var(--text); }
+.note { font-size:.82rem; color:var(--muted); line-height:1.6; }
+.searchbar { display:flex; gap:10px; margin-bottom:14px; }
+.searchbar input { flex:1; min-width:0; }
+.phrase-list { display:grid; gap:12px; }
+.phrase { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:18px; }
+.phrase-top { display:flex; justify-content:space-between; gap:12px; align-items:start; }
+.phrase h3 { margin:0; }
+.phrase .arabic { font-size:1.55rem; margin:12px 0; }
+.quran-controls { display:flex; flex-wrap:wrap; align-items:end; gap:12px; margin-bottom:18px; }
+.quran-controls label { display:grid; gap:6px; color:var(--muted); font-size:.88rem; flex:1; min-width:180px; }
+.quran-player { background:var(--surface-soft); border:1px solid var(--border); border-radius:16px; padding:18px; margin-bottom:16px; }
+.quran-player audio { width:100%; margin-top:10px; }
+.quran-ayahs { display:grid; gap:12px; }
+.quran-ayah { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:18px; }
+.quran-ayah-head { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px; }
+.quran-ayah-number { color:var(--site-primary); background:var(--surface-soft); border-radius:999px; padding:5px 10px; font-size:.82rem; font-weight:800; }
+.quran-ayah .arabic { font-size:clamp(1.7rem,4vw,2.25rem); text-align:right; margin:12px 0; line-height:2.1; }
+.quran-translation { color:var(--muted); line-height:1.75; margin:8px 0 14px; }
+.quran-status { color:var(--muted); line-height:1.6; margin:10px 0; }
+.pill { display:inline-block; border-radius:999px; padding:4px 9px; background:var(--surface-soft); color:var(--muted); font-size:.75rem; }
+.small-btn { border:1px solid var(--border); background:var(--surface); color:var(--text); border-radius:999px; padding:7px 10px; }
+.quiz-question { font-size:1.25rem; font-weight:750; margin:14px 0; }
+.quiz-options { display:grid; gap:10px; }
+.quiz-option { width:100%; text-align:left; padding:12px 14px; background:var(--surface); color:var(--text); border:1px solid var(--border); border-radius:12px; }
+.quiz-option:hover { border-color:var(--site-secondary); }
+.quiz-feedback { min-height:24px; margin-top:12px; font-weight:700; }
+.footer { border-top:1px solid var(--border); padding:26px 22px; color:var(--muted); text-align:center; font-size:.9rem; }
+.toast { position:fixed; bottom:18px; left:50%; transform:translateX(-50%); background:var(--site-primary); color:white; padding:12px 18px; border-radius:999px; box-shadow:var(--shadow); z-index:20; display:none; max-width:calc(100vw - 32px); }
+[data-theme="dark"] .topbar, [data-theme="dark"] .hero { --site-primary:#123D32; }
+[data-theme="dark"] .btn-primary { background:#176B53; }
+[data-theme="dark"] .text-link { color:var(--site-secondary); }
+[data-theme="dark"] .logo { background:rgba(216,182,109,.1); }
+[dir="rtl"] .hero, [dir="rtl"] .section-head, [dir="rtl"] .phrase-top { text-align:right; }
+[dir="rtl"] .quiz-option { text-align:right; }
+[dir="rtl"] .nav { direction:rtl; }
+[dir="rtl"] .searchbar { direction:rtl; }
+[dir="rtl"] .counter-controls { direction:ltr; }
+[hidden] { display:none !important; }
+@media (prefers-color-scheme: dark) { .counter-number { color:#D8B66D; } }
+@media (max-width:800px) { .hero { grid-template-columns:1fr; } .hero-art { min-height:190px; } .grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .nav-links { display:none; position:absolute; top:74px; left:12px; right:12px; background:var(--site-primary); border:1px solid rgba(255,255,255,.2); border-radius:16px; padding:10px; z-index:10; flex-direction:column; align-items:stretch; } .nav-links.open { display:flex; } .nav-links a { padding:12px; } .menu-btn { display:inline-flex; } }
+@media (max-width:560px) { main { padding:18px 14px 42px; } .nav { padding:12px 14px; } .brand small { display:none; } .hero { padding:26px 22px; border-radius:20px; } .grid,.two-col { grid-template-columns:1fr; } .section-head { align-items:start; flex-direction:column; margin-top:32px; } .section-head h2 { font-size:1.75rem; } .card { padding:19px; } .counter-display { width:165px; height:165px; } .searchbar { flex-direction:column; } .phrase-top { flex-direction:column; } }
+@media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior:auto !important; transition:none !important; } }
 </style>
 </head>
 <body>
-<div id="app">
-<header class="topbar">
-  <div class="brand"><div class="logo" aria-hidden="true">☾</div><div><h1>DHIKR NOOR</h1><small id="brand-sub">القرآن الكريم · Le Coran et le dhikr</small></div></div>
-  <div class="langs" aria-label="Langue"><button id="frBtn" class="active" type="button">FR</button><button id="arBtn" type="button">عربي</button></div>
-</header>
-<section class="hero">
-  <div class="eyebrow" id="hero-eyebrow">UN ESPACE POUR LE RAPPEL D'ALLAH</div>
-  <h2 id="hero-title">Bienvenue sur Dhikr Noor</h2>
-  <p id="hero-desc">Lire, écouter et apprendre à son rythme — seul ou en famille.</p>
-  <div class="search"><input id="searchInput" type="search" placeholder="Rechercher une sourate ou une invocation…" aria-label="Rechercher"><button id="searchBtn" type="button">Rechercher</button></div>
-</section>
-<nav class="nav" aria-label="Navigation principale">
-  <button class="active" data-page="home" type="button">⌂ Accueil</button><button data-page="quran" type="button">▤ Coran</button><button data-page="dhikr" type="button">◉ Dhikr</button><button data-page="kids" type="button">♧ Enfants</button><button data-page="invocations" type="button">✧ Invocations</button>
-</nav>
-<main>
-<section id="home" class="page active">
-  <div class="section-title"><div><h3 id="quick-title">Votre espace spirituel</h3><p id="quick-sub">Choisissez ce que vous souhaitez faire aujourd'hui.</p></div></div>
-  <div class="feature-grid">
-    <button class="feature" data-page="quran" type="button"><span class="ico">▤</span><strong id="tile-quran">Lire le Coran</strong><small id="tile-quran-sub">Les sourates et leur traduction</small></button>
-    <button class="feature" data-page="audio" type="button"><span class="ico">♫</span><strong id="tile-audio">Écouter les récitateurs</strong><small id="tile-audio-sub">Choisir une récitation</small></button>
-    <button class="feature" data-page="dhikr" type="button"><span class="ico">◉</span><strong id="tile-dhikr">Compteur de dhikr</strong><small id="tile-dhikr-sub">Compter à votre rythme</small></button>
-    <button class="feature" data-page="invocations" type="button"><span class="ico">✧</span><strong id="tile-inv">Invocations</strong><small id="tile-inv-sub">Les rappels du quotidien</small></button>
-    <button class="feature" data-page="kids" type="button"><span class="ico">♧</span><strong id="tile-kids">Espace enfants</strong><small id="tile-kids-sub">Apprendre avec douceur</small></button>
-    <button class="feature" data-page="favorites" type="button"><span class="ico">♡</span><strong id="tile-fav">Favoris</strong><small id="tile-fav-sub">Vos contenus préférés</small></button>
-  </div>
-  <div class="section-title"><div><h3 id="popular-title">Sourates pour commencer</h3><p id="popular-sub">Une petite sélection pour découvrir le site.</p></div><button class="primary-btn" data-page="quran" type="button" id="see-all">Voir tout</button></div>
-  <div class="surah-list" id="homeSurahs"></div>
-  <div class="section-title"><div><h3 id="daily-title">Le dhikr du jour</h3><p id="daily-sub">Un rappel simple à réciter.</p></div></div>
-  <div class="panel" style="text-align:center"><div class="reader-arabic" style="text-align:center">سُبْحَانَ اللَّهِ</div><strong>SubhanAllah</strong><p style="margin-bottom:0">Gloire et pureté à Allah.</p><button class="primary-btn" style="margin-top:14px" data-page="dhikr" type="button">Ouvrir le compteur</button></div>
-</section>
-<section id="quran" class="page">
-  <button class="back" data-page="home" type="button">← Retour à l'accueil</button>
-  <div class="section-title"><div><h3 id="quran-title">Le Coran</h3><p id="quran-sub">Sélectionnez une sourate pour afficher un exemple de lecture.</p></div></div>
-  <input id="surahFilter" class="select" type="search" placeholder="Rechercher une sourate…" aria-label="Rechercher une sourate">
-  <div class="surah-list" id="surahList"></div>
-  <p class="note">Prototype de démonstration : cette version ne contient pas encore le texte complet des 114 sourates ni les fichiers audio. Les textes et traductions définitifs devront être intégrés depuis des sources fiables et autorisées.</p>
-</section>
-<section id="reader" class="page">
-  <button class="back" data-page="quran" type="button">← Retour aux sourates</button>
-  <div class="panel"><div class="section-title"><div><h3 id="readerTitle">Sourate Al-Ikhlas</h3><p id="readerMeta">Lecture de démonstration</p></div></div>
-    <div id="readerVerses"></div>
-    <label for="readerReciter" id="reciterLabel">Récitateur</label><select class="select" id="readerReciter"><option>Mishary Rashid Alafasy</option><option>Abdul Rahman Al-Sudais</option><option>Maher Al-Muaiqly</option></select>
-    <button class="primary-btn" type="button" id="readerPlay">▶ Écouter un exemple</button><p class="note" id="audioNotice">Le lecteur audio réel sera connecté après l'intégration d'une source autorisée. Ce bouton ne diffuse pas encore de récitation.</p>
-  </div>
-</section>
-<section id="audio" class="page">
-  <button class="back" data-page="home" type="button">← Retour à l'accueil</button><div class="section-title"><div><h3>Écouter le Coran</h3><p>Choisissez un récitateur pour préparer votre écoute.</p></div></div>
-  <div class="panel"><label for="audioReciter">Récitateur</label><select id="audioReciter" class="select"><option>Mishary Rashid Alafasy</option><option>Abdul Rahman Al-Sudais</option><option>Maher Al-Muaiqly</option></select><label for="audioSurah">Sourate</label><select id="audioSurah" class="select"><option>Al-Fatiha</option><option>Al-Ikhlas</option><option>Al-Falaq</option><option>An-Nas</option></select><p class="note">Le catalogue audio n'est pas encore connecté. Nous ajouterons les fichiers uniquement si leur source et leurs conditions d'utilisation sont compatibles avec le projet.</p></div>
-</section>
-<section id="dhikr" class="page">
-  <button class="back" data-page="home" type="button">← Retour à l'accueil</button><div class="section-title"><div><h3 id="counter-title">Compteur de dhikr</h3><p id="counter-sub">Un outil simple, sans compétition.</p></div></div>
-  <div class="dhikr-panel"><label for="dhikrChoice" id="choose-label">Choisir une formule</label><select id="dhikrChoice" class="select"><option value="subhan">سُبْحَانَ اللَّهِ — SubhanAllah</option><option value="hamd">الْحَمْدُ لِلَّهِ — Alhamdulillah</option><option value="akbar">اللَّهُ أَكْبَرُ — Allahu Akbar</option><option value="istighfar">أَسْتَغْفِرُ اللَّهَ — Astaghfirullah</option></select><div class="arabic" id="dhikrArabic">سُبْحَانَ اللَّهِ</div><div class="translit" id="dhikrTranslit">SubhanAllah</div><div class="counter" id="count" aria-live="polite">0</div><div class="counter-actions"><button class="round secondary" id="minus" type="button" aria-label="Diminuer">−</button><button class="round" id="plus" type="button" aria-label="Compter">+</button></div><button class="reset" id="reset" type="button">Réinitialiser</button><p class="note" style="color:#e7dec9">Le compteur sert uniquement à suivre vos répétitions personnelles.</p></div>
-</section>
-<section id="kids" class="page">
-  <button class="back" data-page="home" type="button">← Retour à l'accueil</button><div class="kids"><div><h4 id="kids-title">Dhikr Noor Kids</h4><p id="kids-desc">Découvrir les sourates courtes et les invocations du quotidien, avec l'accompagnement d'un adulte.</p><div class="kid-buttons"><button data-kids="Al-Fatiha" type="button">Sourates courtes</button><button data-page="invocations" type="button">Invocations</button><button data-kids="Activités" type="button">Activités</button></div></div><div class="illustration" aria-hidden="true">📖 ☾ ✨</div></div><div class="section-title"><div><h3>Pour apprendre à son rythme</h3><p>Un parcours sans pression, à partager en famille.</p></div></div><div class="feature-grid"><button class="feature" data-kids="Al-Ikhlas" type="button"><span class="ico">📘</span><strong>Al-Ikhlas</strong><small>Écouter, lire, répéter</small></button><button class="feature" data-kids="An-Nas" type="button"><span class="ico">🌙</span><strong>An-Nas</strong><small>Découvrir une sourate courte</small></button></div><p class="note">Les activités pédagogiques seront ajoutées progressivement et relues avant publication.</p>
-</section>
-<section id="invocations" class="page"><button class="back" data-page="home" type="button">← Retour à l'accueil</button><div class="section-title"><div><h3>Invocations du quotidien</h3><p>Des ressources à vérifier et à enrichir.</p></div></div><div class="surah-list"><div class="surah"><div class="number">☀</div><div class="surah-info"><strong>Au réveil</strong><small>Invocations du matin</small></div><span class="arabic">الصباح</span></div><div class="surah"><div class="number">◐</div><div class="surah-info"><strong>Avant de dormir</strong><small>Invocations du soir</small></div><span class="arabic">النوم</span></div><div class="surah"><div class="number">♡</div><div class="surah-info"><strong>Avant et après les repas</strong><small>Rappels du quotidien</small></div><span class="arabic">الطعام</span></div></div><p class="note">Les textes exacts et leurs références seront vérifiés avant la mise en ligne publique.</p></section>
-<section id="favorites" class="page"><button class="back" data-page="home" type="button">← Retour à l'accueil</button><div class="section-title"><div><h3>Favoris</h3><p>Les favoris seront disponibles dans une prochaine version.</p></div></div><div class="panel">Pour commencer, le site fonctionne sans compte et ne sauvegarde pas encore vos favoris entre les visites.</div></section>
-</main>
-<footer>DHIKR NOOR · Prototype gratuit · Français et arabe<br>Les textes, traductions et récitations définitifs seront vérifiés avant publication.</footer>
+<div id="app" data-sites-preview-theme="custom">
+  <header class="topbar">
+    <nav class="nav" aria-label="Navigation principale">
+      <a class="brand" href="#accueil" aria-label="Dhikr Noor, accueil">
+        <span class="logo" aria-hidden="true">☾</span><span><strong>Dhikr Noor</strong><small>Le rappel au cœur de chaque journée</small></span>
+      </a>
+      <div class="nav-right">
+        <div class="nav-links" id="navLinks">
+          <a href="#outils" data-fr="Explorer" data-ar="استكشف">Explorer</a>
+          <a href="#coran" data-fr="Le Coran" data-ar="القرآن الكريم">Le Coran</a>
+          <a href="#compteur" data-fr="Compteur" data-ar="العداد">Compteur</a>
+          <a href="#invocations" data-fr="Invocations" data-ar="الأذكار">Invocations</a>
+          <a href="#enfants" data-fr="Espace enfants" data-ar="ركن الأطفال">Espace enfants</a>
+        </div>
+        <button class="lang-btn" id="languageToggle" type="button" aria-label="Changer de langue">عربي</button>
+        <button class="lang-btn" id="themeToggle" type="button" aria-pressed="false" aria-label="Activer le mode nuit">☾</button>
+        <button class="menu-btn" id="menuToggle" type="button" aria-expanded="false" aria-controls="navLinks" aria-label="Ouvrir le menu">☰</button>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <section class="hero" id="accueil">
+      <div>
+        <div class="eyebrow" data-fr="Un instant de sérénité" data-ar="لحظة من السكينة">Un instant de sérénité</div>
+        <h1 data-fr="Fais une place au rappel dans ta journée." data-ar="اجعل للذِّكر مكانًا في يومك.">Fais une place au rappel dans ta journée.</h1>
+        <p data-fr="Un espace simple et apaisant pour compter tes dhikr, retrouver des invocations de démonstration et apprendre en famille, à ton rythme." data-ar="مساحة هادئة وبسيطة لعدّ الأذكار، واستكشاف أمثلة من الأدعية، والتعلّم مع العائلة حسب وقتك.">Un espace simple et apaisant pour compter tes dhikr, retrouver des invocations de démonstration et apprendre en famille, à ton rythme.</p>
+        <div class="hero-actions"><a class="btn btn-gold" href="#compteur" data-fr="Commencer un dhikr →" data-ar="ابدأ الذكر ←">Commencer un dhikr →</a><a class="btn btn-outline" href="#invocations" data-fr="Explorer les invocations" data-ar="استكشف الأذكار">Explorer les invocations</a></div>
+      </div>
+      <div class="hero-art" aria-hidden="true"><div class="mandala"><div class="mandala-inner"><div class="arabic">ذِكْر</div><span>Dhikr Noor</span></div></div></div>
+    </section>
+
+    <section id="outils">
+      <div class="section-head"><div><h2 data-fr="Ton espace de rappel" data-ar="مساحتك للذِّكر">Ton espace de rappel</h2><p data-fr="Des outils accessibles, pensés pour le quotidien." data-ar="أدوات سهلة صُمّمت للحياة اليومية.">Des outils accessibles, pensés pour le quotidien.</p></div></div>
+      <div class="grid">
+        <article class="card"><div class="card-icon" aria-hidden="true">◉</div><h3 data-fr="Compteur de dhikr" data-ar="عداد الذكر">Compteur de dhikr</h3><p data-fr="Compte tes répétitions et fixe un objectif personnel." data-ar="احسب التكرارات وحدّد هدفك الشخصي.">Compte tes répétitions et fixe un objectif personnel.</p><a class="text-link" href="#compteur" data-fr="Ouvrir le compteur →" data-ar="افتح العداد ←">Ouvrir le compteur →</a></article>
+        <article class="card"><div class="card-icon" aria-hidden="true">۞</div><h3 data-fr="Invocations" data-ar="الأذكار والدعاء">Invocations</h3><p data-fr="Parcours des exemples avec arabe et sens en français." data-ar="تصفّح أمثلة مع النص العربي والمعنى بالفرنسية.">Parcours des exemples avec arabe et sens en français.</p><a class="text-link" href="#invocations" data-fr="Voir les exemples →" data-ar="اعرض الأمثلة ←">Voir les exemples →</a></article>
+        <article class="card"><div class="card-icon" aria-hidden="true">✧</div><h3 data-fr="Apprendre en famille" data-ar="التعلّم مع العائلة">Apprendre en famille</h3><p data-fr="Un mini-quiz de découverte, simple et sans pression." data-ar="مسابقة قصيرة للتعرّف والتعلّم دون ضغط.">Un mini-quiz de découverte, simple et sans pression.</p><a class="text-link" href="#enfants" data-fr="Jouer au quiz →" data-ar="ابدأ المسابقة ←">Jouer au quiz →</a></article>
+      </div>
+    </section>
+
+    <section id="coran">
+      <div class="section-head"><div><h2 data-fr="Le Coran : lire et écouter" data-ar="القرآن الكريم: قراءة واستماع">Le Coran : lire et écouter</h2><p data-fr="Choisis une sourate, lis le texte arabe avec sa traduction française et écoute la récitation." data-ar="اختر سورة واقرأ النص العربي مع الترجمة الفرنسية واستمع إلى التلاوة.">Choisis une sourate, lis le texte arabe avec sa traduction française et écoute la récitation.</p></div></div>
+      <div class="card">
+        <div class="quran-controls">
+          <label for="surahSelect"><span data-fr="Sourate" data-ar="السورة">Sourate</span><select id="surahSelect"><option value="1">Chargement des sourates…</option></select></label>
+          <label for="reciterSelect"><span data-fr="Récitateur" data-ar="القارئ">Récitateur</span><select id="reciterSelect"><option value="ar.alafasy">Mishary Rashid Alafasy</option><option value="ar.abdurrahmaansudais">Abdul Rahman Al-Sudais</option><option value="ar.mahermuaiqly">Maher Al-Muaiqly</option></select></label>
+          <button class="btn btn-primary" id="loadSurah" type="button" data-fr="Afficher la sourate" data-ar="عرض السورة">Afficher la sourate</button>
+        </div>
+        <div class="quran-player"><strong id="quranTitle" data-fr="Bienvenue dans le Coran" data-ar="مرحبًا بك في القرآن الكريم">Bienvenue dans le Coran</strong><p class="quran-status" id="quranStatus" role="status" aria-live="polite" data-fr="La sourate entière s’affichera verset par verset ci-dessous. Choisis un réciteur puis lance l’écoute." data-ar="ستظهر السورة كاملة أدناه آيةً آية. اختر قارئًا ثم ابدأ الاستماع.">La sourate entière s’affichera verset par verset ci-dessous. Choisis un réciteur puis lance l’écoute.</p><button class="btn btn-primary" id="playWholeSurah" type="button" data-fr="▶ Écouter toute la sourate" data-ar="▶ استمع إلى السورة كاملة">▶ Écouter toute la sourate</button><audio id="quranAudio" controls preload="none" aria-label="Écouter la récitation du Coran"></audio><p class="note" id="audioProgress" aria-live="polite"></p></div>
+        <div class="quran-ayahs" id="quranAyahs"></div>
+        <p class="note" style="margin-top:16px" data-fr="Source des textes et récitations : Al Quran Cloud. La traduction française est une traduction du sens. Vérifie les éditions et les droits applicables avant tout usage commercial." data-ar="مصدر النصوص والتلاوات: Al Quran Cloud. الترجمة الفرنسية هي ترجمة للمعنى. تحقّق من الإصدارات والحقوق قبل أي استخدام تجاري.">Source des textes et récitations : Al Quran Cloud. La traduction française est une traduction du sens. Vérifie les éditions et les droits applicables avant tout usage commercial.</p>
+      </div>
+    </section>
+
+    <section id="compteur">
+      <div class="section-head"><div><h2 data-fr="Compteur de dhikr" data-ar="عداد الذكر">Compteur de dhikr</h2><p data-fr="Tes progrès restent enregistrés sur cet appareil." data-ar="يُحفَظ تقدّمك على هذا الجهاز.">Tes progrès restent enregistrés sur cet appareil.</p></div></div>
+      <div class="two-col">
+        <div class="counter-card">
+          <div class="form-row"><label for="dhikrType" data-fr="Formule" data-ar="الذكر">Formule</label><select id="dhikrType"><option value="subhan">سُبْحَانَ اللَّهِ — Subhan Allah</option><option value="hamd">الْحَمْدُ لِلَّهِ — Alhamdulillah</option><option value="akbar">اللَّهُ أَكْبَرُ — Allahu Akbar</option><option value="custom" data-fr="Formule personnelle" data-ar="ذكر مخصص">Formule personnelle</option></select></div>
+          <div id="customWrap" hidden style="margin-top:12px"><label for="customDhikr" data-fr="Ta formule (facultatif)" data-ar="ذكرك (اختياري)">Ta formule (facultatif)</label><input id="customDhikr" type="text" maxlength="100" placeholder="Écris ta formule" /></div>
+          <div class="counter-display" aria-live="polite" aria-atomic="true"><div><div class="counter-number" id="counterValue">0</div><div class="counter-label" data-fr="RÉPÉTITIONS" data-ar="تكرارات">RÉPÉTITIONS</div></div></div>
+          <div class="form-row"><label for="goalSelect" data-fr="Objectif" data-ar="الهدف">Objectif</label><select id="goalSelect"><option value="33">33</option><option value="100">100</option><option value="custom">Autre</option></select><input id="customGoal" type="number" min="1" max="10000" value="50" aria-label="Objectif personnalisé" hidden style="width:95px" /></div>
+          <div class="progress-track" role="progressbar" aria-label="Progression vers l’objectif" aria-valuemin="0" aria-valuemax="33" aria-valuenow="0" id="progressTrack"><div class="progress-fill" id="progressFill"></div></div><div class="note" id="progressText">0 sur 33</div>
+          <div class="counter-controls" style="margin-top:18px"><button class="btn btn-primary" id="plusOne" type="button">＋ 1</button><button class="btn btn-soft" id="minusOne" type="button">− 1</button><button class="btn btn-soft" id="resetCounter" type="button" data-fr="Réinitialiser" data-ar="إعادة الضبط">Réinitialiser</button></div>
+          <p class="note" id="counterSaved" style="margin-top:14px" data-fr="Sauvegarde locale activée si ton navigateur l’autorise." data-ar="الحفظ المحلي مفعّل إذا سمح المتصفح بذلك.">Sauvegarde locale activée si ton navigateur l’autorise.</p>
+        </div>
+        <div class="card"><div class="card-icon" aria-hidden="true">✦</div><h3 data-fr="Un rappel à la fois" data-ar="ذِكرٌ في كل مرة">Un rappel à la fois</h3><p data-fr="Choisis une formule que tu connais et avance tranquillement. Les objectifs proposés sont de simples réglages personnels, pas une obligation religieuse." data-ar="اختر ذكرًا تعرفه وتقدّم بهدوء. الأهداف المقترحة إعدادات شخصية وليست واجبًا دينيًا.">Choisis une formule que tu connais et avance tranquillement. Les objectifs proposés sont de simples réglages personnels, pas une obligation religieuse.</p><div class="invocation"><div class="arabic" id="selectedArabic">سُبْحَانَ اللَّهِ</div><p id="selectedTranslit" style="font-weight:750;margin:8px 0;color:var(--text)">Subhan Allah</p><p class="note" id="selectedMeaning" style="margin:0">Gloire à Allah. Traduction du sens, donnée à titre indicatif.</p></div></div>
+      </div>
+    </section>
+
+    <section id="invocations">
+      <div class="section-head"><div><h2 data-fr="Invocations à découvrir" data-ar="أذكار للتعرّف عليها">Invocations à découvrir</h2><p data-fr="Une petite collection de démonstration. Vérifie les sources avant de l’utiliser comme référence religieuse." data-ar="مجموعة تجريبية صغيرة. تحقّق من المصادر قبل اعتمادها مرجعًا دينيًا.">Une petite collection de démonstration. Vérifie les sources avant de l’utiliser comme référence religieuse.</p></div></div>
+      <div class="searchbar"><input type="text" id="phraseSearch" placeholder="Rechercher un mot, une formule…" aria-label="Rechercher dans les invocations" /><button class="btn btn-primary" id="searchClear" type="button" data-fr="Effacer" data-ar="مسح">Effacer</button></div>
+      <div class="phrase-list" id="phraseList"></div>
+      <p class="note" style="margin-top:14px" data-fr="Note éditoriale : les entrées sont des exemples pédagogiques, sans attribution de hadith ni promesse de mérite spécifique. Fais vérifier les textes, translittérations et références par une personne qualifiée avant publication." data-ar="ملاحظة تحريرية: هذه أمثلة تعليمية دون نسبة إلى حديث أو ادعاء فضل خاص. ينبغي مراجعة النصوص والنقل الصوتي والمراجع من مختص قبل النشر.">Note éditoriale : les entrées sont des exemples pédagogiques, sans attribution de hadith ni promesse de mérite spécifique. Fais vérifier les textes, translittérations et références par une personne qualifiée avant publication.</p>
+    </section>
+
+    <section id="enfants">
+      <div class="section-head"><div><h2 data-fr="Le petit quiz" data-ar="مسابقة صغيرة">Le petit quiz</h2><p data-fr="Apprendre quelques mots arabes avec douceur." data-ar="تعلّم بعض الكلمات العربية بلطف.">Apprendre quelques mots arabes avec douceur.</p></div></div>
+      <div class="card"><span class="pill" id="quizStep">Question 1 / 3</span><div class="quiz-question" id="quizQuestion">Que signifie « As-salāmu ʿalaykum » ?</div><div class="quiz-options" id="quizOptions"></div><div class="quiz-feedback" id="quizFeedback" aria-live="polite"></div><button class="btn btn-primary" id="nextQuestion" type="button" hidden data-fr="Question suivante →" data-ar="السؤال التالي ←">Question suivante →</button></div>
+    </section>
+  </main>
+  <footer class="footer"><strong>Dhikr Noor</strong> · <span data-fr="Une maquette de démonstration, à enrichir avec des sources vérifiées." data-ar="نسخة تجريبية تحتاج إلى إثراء بمصادر موثوقة.">Une maquette de démonstration, à enrichir avec des sources vérifiées.</span><br><span class="note">© <span id="year"></span> Dhikr Noor</span></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </div>
 <script>
-(function(){
-const surahs=[
- {n:1,fr:'Al-Fatiha',ar:'الفاتحة',verses:7}, {n:2,fr:'Al-Baqara',ar:'البقرة',verses:286}, {n:3,fr:'Al-Imran',ar:'آل عمران',verses:200}, {n:4,fr:'An-Nisa',ar:'النساء',verses:176}, {n:5,fr:'Al-Maida',ar:'المائدة',verses:120}, {n:6,fr:'Al-Anam',ar:'الأنعام',verses:165}, {n:7,fr:'Al-Araf',ar:'الأعراف',verses:206}, {n:8,fr:'Al-Anfal',ar:'الأنفال',verses:75}, {n:9,fr:'At-Tawba',ar:'التوبة',verses:129}, {n:10,fr:'Yunus',ar:'يونس',verses:109}, {n:36,fr:'Ya-Sin',ar:'يس',verses:83}, {n:67,fr:'Al-Mulk',ar:'الملك',verses:30}, {n:112,fr:'Al-Ikhlas',ar:'الإخلاص',verses:4}, {n:113,fr:'Al-Falaq',ar:'الفلق',verses:5}, {n:114,fr:'An-Nas',ar:'الناس',verses:6}
-];
-const phrases={subhan:{ar:'سُبْحَانَ اللَّهِ',tr:'SubhanAllah',fr:'Gloire et pureté à Allah.'},hamd:{ar:'الْحَمْدُ لِلَّهِ',tr:'Alhamdulillah',fr:'Louange à Allah.'},akbar:{ar:'اللَّهُ أَكْبَرُ',tr:'Allahu Akbar',fr:'Allah est le plus Grand.'},istighfar:{ar:'أَسْتَغْفِرُ اللَّهَ',tr:'Astaghfirullah',fr:'Je demande pardon à Allah.'}};
-let count=0, lang='fr';
-const $=id=>document.getElementById(id);
-function go(page){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===page));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===page));window.scrollTo({top:0,behavior:'smooth'});}
-document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.page)));
-function surahCard(s){return `<div class="surah"><div class="number">${s.n}</div><div class="surah-info"><strong>${s.fr}</strong><small>${s.verses} versets</small></div><span class="arabic">${s.ar}</span><button class="play" type="button" data-read="${s.n}" aria-label="Ouvrir ${s.fr}">›</button></div>`;}
-function renderSurahs(filter=''){let list=surahs.filter(s=>(s.fr+' '+s.ar+' '+s.n).toLowerCase().includes(filter.toLowerCase()));$('surahList').innerHTML=list.map(surahCard).join('')||'<div class="panel">Aucune sourate trouvée dans cette sélection de démonstration.</div>';document.querySelectorAll('[data-read]').forEach(b=>b.addEventListener('click',()=>openReader(Number(b.dataset.read))));}
-$('homeSurahs').innerHTML=[surahs[0],surahs[11],surahs[12],surahs[13],surahs[14]].map(surahCard).join('');
-function openReader(n){const s=surahs.find(x=>x.n===n)||surahs[12];$('readerTitle').textContent='Sourate '+s.fr+' · '+s.ar;$('readerMeta').textContent='Sourate n°'+s.n+' · '+s.verses+' versets';let verses='';if(s.n===112){verses='<div class="reader-arabic">قُلْ هُوَ اللَّهُ أَحَدٌ ۝ اللَّهُ الصَّمَدُ ۝ لَمْ يَلِدْ وَلَمْ يُولَدْ ۝ وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ</div><div class="reader-translation">Dis : « Il est Allah, Unique. Allah, Le Seul à être imploré pour ce que nous désirons. Il n’a jamais engendré, n’a pas été engendré non plus. Et nul n’est égal à Lui. »</div>'; } else {verses='<div class="reader-arabic">'+s.ar+'</div><div class="reader-translation">Le texte intégral et sa traduction seront ajoutés à partir d’une source vérifiée.</div>';} $('readerVerses').innerHTML=verses;go('reader');}
-$('surahFilter').addEventListener('input',e=>renderSurahs(e.target.value));renderSurahs();
-$('searchBtn').addEventListener('click',()=>{let q=$('searchInput').value.trim();$('surahFilter').value=q;renderSurahs(q);go('quran');});$('searchInput').addEventListener('keydown',e=>{if(e.key==='Enter')$('searchBtn').click();});
-function updateCount(){ $('count').textContent=count; }
-$('plus').addEventListener('click',()=>{count++;updateCount();});$('minus').addEventListener('click',()=>{count=Math.max(0,count-1);updateCount();});$('reset').addEventListener('click',()=>{count=0;updateCount();});
-$('dhikrChoice').addEventListener('change',e=>{let p=phrases[e.target.value];$('dhikrArabic').textContent=p.ar;$('dhikrTranslit').textContent=p.tr;});
-document.querySelectorAll('[data-kids]').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.kids==='Activités'){alert('Les activités pédagogiques seront ajoutées dans une prochaine version.');return;}let s=surahs.find(x=>x.fr===b.dataset.kids)||surahs[12];openReader(s.n);}));
-$('readerPlay').addEventListener('click',()=>alert('Le lecteur audio sera connecté lors d’une prochaine étape. Cette maquette ne diffuse pas encore de récitation.'));
-const arLabels={
-'brand-sub':'القرآن الكريم · القرآن والذكر','hero-eyebrow':'مساحة لذكر الله','hero-title':'مرحبًا بكم في ذكر نور','hero-desc':'اقرأ واستمع وتعلّم على مهل، بمفردك أو مع العائلة.','quick-title':'مساحتك الروحانية','quick-sub':'اختر ما تريد القيام به اليوم.','tile-quran':'قراءة القرآن','tile-quran-sub':'السور والترجمة','tile-audio':'الاستماع للقراء','tile-audio-sub':'اختر تلاوة','tile-dhikr':'عداد الذكر','tile-dhikr-sub':'اذكر الله على مهل','tile-inv':'الأذكار والدعاء','tile-inv-sub':'أذكار الحياة اليومية','tile-kids':'ركن الأطفال','tile-kids-sub':'التعلم بلطف','tile-fav':'المفضلة','tile-fav-sub':'المحتوى المفضل لديك','popular-title':'سور للبدء','popular-sub':'مجموعة صغيرة للتعرّف على الموقع.','daily-title':'ذكر اليوم','daily-sub':'ذكر بسيط للترديد.','quran-title':'القرآن الكريم','quran-sub':'اختر سورة لعرض مثال للقراءة.','counter-title':'عداد الذكر','counter-sub':'أداة بسيطة بلا منافسة.','kids-title':'ذكر نور للأطفال','kids-desc':'اكتشاف السور القصيرة وأذكار الحياة اليومية بمساعدة شخص بالغ.','choose-label':'اختر ذكرًا'};
-const frLabels={'brand-sub':'القرآن الكريم · Le Coran et le dhikr','hero-eyebrow':"UN ESPACE POUR LE RAPPEL D'ALLAH",'hero-title':'Bienvenue sur Dhikr Noor','hero-desc':'Lire, écouter et apprendre à son rythme — seul ou en famille.','quick-title':'Votre espace spirituel','quick-sub':"Choisissez ce que vous souhaitez faire aujourd'hui.",'tile-quran':'Lire le Coran','tile-quran-sub':'Les sourates et leur traduction','tile-audio':'Écouter les récitateurs','tile-audio-sub':'Choisir une récitation','tile-dhikr':'Compteur de dhikr','tile-dhikr-sub':'Compter à votre rythme','tile-inv':'Invocations','tile-inv-sub':'Les rappels du quotidien','tile-kids':'Espace enfants','tile-kids-sub':'Apprendre avec douceur','tile-fav':'Favoris','tile-fav-sub':'Vos contenus préférés','popular-title':'Sourates pour commencer','popular-sub':'Une petite sélection pour découvrir le site.','daily-title':'Le dhikr du jour','daily-sub':'Un rappel simple à réciter.','quran-title':'Le Coran','quran-sub':'Sélectionnez une sourate pour afficher un exemple de lecture.','counter-title':'Compteur de dhikr','counter-sub':'Un outil simple, sans compétition.','kids-title':'Dhikr Noor Kids','kids-desc':"Découvrir les sourates courtes et les invocations du quotidien, avec l'accompagnement d'un adulte.",'choose-label':'Choisir une formule'};
-function setLang(l){lang=l;document.documentElement.lang=l==='ar'?'ar':'fr';document.documentElement.dir=l==='ar'?'rtl':'ltr';$('frBtn').classList.toggle('active',l==='fr');$('arBtn').classList.toggle('active',l==='ar');const dict=l==='ar'?arLabels:frLabels;Object.entries(dict).forEach(([id,v])=>{let el=$(id);if(el)el.textContent=v;});$('searchInput').placeholder=l==='ar'?'ابحث عن سورة أو ذكر…':'Rechercher une sourate ou une invocation…';$('searchBtn').textContent=l==='ar'?'بحث':'Rechercher';$('see-all').textContent=l==='ar'?'عرض الكل':'Voir tout';$('surahFilter').placeholder=l==='ar'?'ابحث عن سورة…':'Rechercher une sourate…';document.querySelectorAll('.nav button').forEach((b,i)=>{let fr=['⌂ Accueil','▤ Coran','◉ Dhikr','♧ Enfants','✧ Invocations'],ar=['⌂ الرئيسية','▤ القرآن','◉ الذكر','♧ الأطفال','✧ الأدعية'];b.textContent=(l==='ar'?ar:fr)[i];});}
-$('frBtn').addEventListener('click',()=>setLang('fr'));$('arBtn').addEventListener('click',()=>setLang('ar'));
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const safeStore = {
+    get(key, fallback) { try { const value = localStorage.getItem(key); return value === null ? fallback : JSON.parse(value); } catch { return fallback; } },
+    set(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); return true; } catch { return false; } }
+  };
+  let language = safeStore.get('dhikr-noor-language', 'fr') === 'ar' ? 'ar' : 'fr';
+  let darkMode = safeStore.get('dhikr-noor-dark-mode', false) === true;
+  let count = Number(safeStore.get('dhikr-noor-count', 0)) || 0;
+  let selectedType = safeStore.get('dhikr-noor-type', 'subhan');
+  let goalMode = String(safeStore.get('dhikr-noor-goal-mode', '33'));
+  let customGoalValue = Number(safeStore.get('dhikr-noor-custom-goal', 50)) || 50;
+  let toastTimer;
+  const phrases = [
+    { id:'salām', titleFr:'Salutation', titleAr:'السلام', arabic:'السَّلَامُ عَلَيْكُمْ', translit:'As-salāmu ʿalaykum', meaningFr:'Que la paix soit sur vous.', meaningAr:'السلام عليكم.', category:'Salutation' },
+    { id:'subhan', titleFr:'Gloire à Allah', titleAr:'التسبيح', arabic:'سُبْحَانَ اللَّهِ', translit:'Subḥāna Allāh', meaningFr:'Gloire à Allah.', meaningAr:'تنزيه الله عن كل نقص.', category:'Dhikr' },
+    { id:'hamd', titleFr:'Louange à Allah', titleAr:'الحمد', arabic:'الْحَمْدُ لِلَّهِ', translit:'Al-ḥamdu lillāh', meaningFr:'La louange appartient à Allah.', meaningAr:'الثناء على الله وحمده.', category:'Dhikr' },
+    { id:'akbar', titleFr:'Allah est le plus grand', titleAr:'التكبير', arabic:'اللَّهُ أَكْبَرُ', translit:'Allāhu akbar', meaningFr:'Allah est le plus grand.', meaningAr:'الله أكبر من كل شيء.', category:'Dhikr' }
+  ];
+  const typeInfo = {
+    subhan:{arabic:'سُبْحَانَ اللَّهِ',translit:'Subhan Allah',meaning:'Gloire à Allah. Traduction du sens, donnée à titre indicatif.'},
+    hamd:{arabic:'الْحَمْدُ لِلَّهِ',translit:'Alhamdulillah',meaning:'La louange appartient à Allah. Traduction du sens, donnée à titre indicatif.'},
+    akbar:{arabic:'اللَّهُ أَكْبَرُ',translit:'Allahu Akbar',meaning:'Allah est le plus grand. Traduction du sens, donnée à titre indicatif.'},
+    custom:{arabic:'ذِكْر',translit:'Formule personnelle',meaning:'Saisis ta formule personnelle. Vérifie son texte si tu l’ajoutes comme contenu religieux.'}
+  };
+  const quiz = [
+    { qFr:'Que signifie « As-salāmu ʿalaykum » ?', qAr:'ما معنى «السلام عليكم»؟', optionsFr:['Que la paix soit sur vous','Bonne nuit','Merci beaucoup'], optionsAr:['السلام عليكم','تصبح على خير','شكرًا جزيلًا'], answer:0 },
+    { qFr:'Quelle formule signifie « La louange appartient à Allah » ?', qAr:'أي عبارة تعني «الحمد لله»؟', optionsFr:['Allahu Akbar','Alhamdulillah','Subhan Allah'], optionsAr:['الله أكبر','الحمد لله','سبحان الله'], answer:1 },
+    { qFr:'Quelle formule signifie « Allah est le plus grand » ?', qAr:'أي عبارة تعني «الله أكبر»؟', optionsFr:['Subhan Allah','As-salamu alaykum','Allahu Akbar'], optionsAr:['سبحان الله','السلام عليكم','الله أكبر'], answer:2 }
+  ];
+  let quizIndex = 0, quizAnswered = false;
+  const reciterNames = {'ar.alafasy':'Mishary Rashid Alafasy','ar.abdurrahmaansudais':'Abdul Rahman Al-Sudais','ar.mahermuaiqly':'Maher Al-Muaiqly'};
+  let currentRecitationAyahs = [], currentAudioIndex = 0, playFullSurah = false;
+  async function loadSurahList() {
+    const select=$('surahSelect');
+    try {
+      const response=await fetch('https://api.alquran.cloud/v1/surah');
+      if(!response.ok) throw new Error('Surah list unavailable');
+      const result=await response.json();
+      select.innerHTML='';
+      result.data.forEach(surah=>{const option=document.createElement('option');option.value=String(surah.number);option.textContent=`${surah.number}. ${surah.englishName} — ${surah.name}`;select.append(option);});
+      await loadSelectedSurah();
+    } catch {
+      select.innerHTML='<option value="1">Al-Fātiha (1)</option><option value="112">Al-Ikhlās (112)</option><option value="113">Al-Falaq (113)</option><option value="114">An-Nās (114)</option>';
+      $('quranStatus').textContent=t('Impossible de charger la liste des sourates. Vérifie ta connexion puis réessaie.','تعذّر تحميل قائمة السور. تحقّق من الاتصال ثم أعد المحاولة.');
+    }
+  }
+  async function loadSelectedSurah() {
+    const number=$('surahSelect').value || '1';
+    const reciter=$('reciterSelect').value;
+    const status=$('quranStatus'), list=$('quranAyahs'), audio=$('quranAudio');
+    status.textContent=t('Chargement de la sourate…','جارٍ تحميل السورة…');
+    list.innerHTML=''; audio.removeAttribute('src'); audio.load();
+    try {
+      const editions=`quran-uthmani,fr.hamidullah,${reciter}`;
+      const response=await fetch(`https://api.alquran.cloud/v1/surah/${encodeURIComponent(number)}/editions/${editions}`);
+      if(!response.ok) throw new Error('Surah unavailable');
+      const payload=await response.json();
+      const arabic=payload.data.find(x=>x.edition.identifier==='quran-uthmani') || payload.data[0];
+      const french=payload.data.find(x=>x.edition.identifier==='fr.hamidullah');
+      const recitation=payload.data.find(x=>x.edition.identifier===reciter);
+      if(!arabic || !french || !recitation) throw new Error('Edition unavailable');
+      currentRecitationAyahs=recitation.ayahs || []; currentAudioIndex=0; playFullSurah=false; $('audioProgress').textContent='';
+      $('quranTitle').textContent=`${arabic.englishName} — ${arabic.name} (${arabic.numberOfAyahs} ${t('versets','آية')})`;
+      status.textContent=t(`Récitateur : ${reciterNames[reciter] || reciter}. Appuie sur « Écouter » pour lancer un verset.`,`القارئ: ${reciterNames[reciter] || reciter}. اضغط على «استمع» لتشغيل الآية.`);
+      arabic.ayahs.forEach((ayah,index)=>{
+        const row=document.createElement('article'); row.className='quran-ayah';
+        const head=document.createElement('div'); head.className='quran-ayah-head';
+        const numberLabel=document.createElement('span'); numberLabel.className='quran-ayah-number'; numberLabel.textContent=`${t('Verset','آية')} ${ayah.numberInSurah}`;
+        const play=document.createElement('button'); play.type='button'; play.className='small-btn'; play.textContent=t('▶ Écouter','▶ استمع');
+        play.addEventListener('click',()=>{
+          const audioAyah=recitation.ayahs[index];
+          if(!audioAyah || !audioAyah.audio){showToast(t('Audio indisponible pour ce verset.','الصوت غير متاح لهذه الآية.'));return;}
+          playFullSurah=false;
+          audio.src=audioAyah.audio; audio.play().catch(()=>showToast(t('Appuie sur Lecture dans le lecteur audio.','اضغط على تشغيل في مشغل الصوت.')));
+        });
+        head.append(numberLabel,play);
+        const arabicText=document.createElement('div'); arabicText.className='arabic'; arabicText.lang='ar'; arabicText.dir='rtl'; arabicText.textContent=ayah.text;
+        const translation=document.createElement('p'); translation.className='quran-translation'; translation.textContent=french.ayahs[index]?.text || t('Traduction indisponible.','الترجمة غير متاحة.');
+        row.append(head,arabicText,translation); list.append(row);
+      });
+    } catch {
+      $('quranTitle').textContent=t('Lecture du Coran','قراءة القرآن الكريم');
+      status.textContent=t('Le chargement a échoué. Vérifie ta connexion Internet, puis sélectionne de nouveau la sourate.','تعذّر التحميل. تحقّق من اتصال الإنترنت ثم اختر السورة مجددًا.');
+    }
+  }
+  function t(fr, ar) { return language === 'fr' ? fr : ar; }
+  function showToast(message) { const toast=$('toast'); toast.textContent=message; toast.style.display='block'; clearTimeout(toastTimer); toastTimer=setTimeout(()=>toast.style.display='none',2600); }
+  function applyLanguage() {
+    document.documentElement.lang = language === 'fr' ? 'fr' : 'ar';
+    document.documentElement.dir = language === 'fr' ? 'ltr' : 'rtl';
+    document.querySelectorAll('[data-fr][data-ar]').forEach(el => { el.textContent = language === 'fr' ? el.dataset.fr : el.dataset.ar; });
+    $('languageToggle').textContent = language === 'fr' ? 'عربي' : 'Français';
+    $('languageToggle').setAttribute('aria-label', t('Passer en arabe','Switch to French'));
+    $('themeToggle').textContent = darkMode ? '☀' : '☾';
+    $('themeToggle').setAttribute('aria-pressed', String(darkMode));
+    $('themeToggle').setAttribute('aria-label', t(darkMode ? 'Activer le thème clair' : 'Activer le mode nuit', darkMode ? 'تفعيل المظهر الفاتح' : 'تفعيل الوضع الليلي'));
+    $('phraseSearch').placeholder = t('Rechercher un mot, une formule…','ابحث عن كلمة أو ذكر…');
+    $('customDhikr').placeholder = t('Écris ta formule','اكتب الذكر');
+    renderCounter(); renderPhrases(); renderQuiz();
+  }
+  function currentGoal() { if (goalMode === 'custom') return Math.min(10000, Math.max(1, Number(customGoalValue)||1)); return Number(goalMode)||33; }
+  function saveCounter() { safeStore.set('dhikr-noor-count',count); safeStore.set('dhikr-noor-type',selectedType); safeStore.set('dhikr-noor-goal-mode',goalMode); safeStore.set('dhikr-noor-custom-goal',customGoalValue); }
+  function renderCounter() {
+    $('counterValue').textContent = String(count);
+    $('dhikrType').value = selectedType;
+    $('goalSelect').value = goalMode;
+    $('customGoal').hidden = goalMode !== 'custom';
+    $('customGoal').value = String(customGoalValue);
+    $('customWrap').hidden = selectedType !== 'custom';
+    const info = typeInfo[selectedType] || typeInfo.subhan;
+    $('selectedArabic').textContent = selectedType === 'custom' && $('customDhikr').value.trim() ? $('customDhikr').value.trim() : info.arabic;
+    $('selectedTranslit').textContent = selectedType === 'custom' ? t('Formule personnelle','ذكر مخصص') : info.translit;
+    $('selectedMeaning').textContent = t(info.meaning, selectedType === 'custom' ? 'أدخل الذكر الشخصي. تحقّق من النص قبل نشره كمحتوى ديني.' : ({subhan:'تنزيه الله عن كل نقص.',hamd:'الثناء على الله وحمده.',akbar:'الله أكبر من كل شيء.'}[selectedType] || info.meaning));
+    const goal=currentGoal(), pct=Math.min(100,Math.round(count/goal*100));
+    $('progressFill').style.width=pct+'%'; $('progressText').textContent=t(`${count} sur ${goal} · ${pct}% de l’objectif`,`${count} من ${goal} · ${pct}% من الهدف`);
+    $('progressTrack').setAttribute('aria-valuemax',String(goal)); $('progressTrack').setAttribute('aria-valuenow',String(Math.min(count,goal)));
+    $('counterSaved').textContent=t('Sauvegarde locale activée si ton navigateur l’autorise.','يُحفَظ التقدّم محليًا إذا سمح المتصفح بذلك.');
+  }
+  function renderPhrases() {
+    const query=$('phraseSearch').value.trim().toLocaleLowerCase();
+    const filtered=phrases.filter(p => [p.titleFr,p.titleAr,p.arabic,p.translit,p.meaningFr,p.meaningAr].some(s=>s.toLocaleLowerCase().includes(query)));
+    const list=$('phraseList'); list.innerHTML='';
+    if (!filtered.length) { list.textContent=t('Aucun résultat. Essaie un autre mot.','لا توجد نتائج. جرّب كلمة أخرى.'); return; }
+    filtered.forEach(p=>{
+      const article=document.createElement('article'); article.className='phrase';
+      const top=document.createElement('div'); top.className='phrase-top';
+      const title=document.createElement('h3'); title.textContent=t(p.titleFr,p.titleAr);
+      const pill=document.createElement('span'); pill.className='pill'; pill.textContent=t('Exemple pédagogique','مثال تعليمي'); top.append(title,pill);
+      const arabic=document.createElement('div'); arabic.className='arabic'; arabic.lang='ar'; arabic.textContent=p.arabic;
+      const translit=document.createElement('p'); translit.style.fontWeight='750'; translit.textContent=p.translit;
+      const meaning=document.createElement('p'); meaning.style.color='var(--muted)'; meaning.textContent=t(p.meaningFr,p.meaningAr);
+      const copy=document.createElement('button'); copy.className='small-btn'; copy.type='button'; copy.textContent=t('Copier le texte arabe','نسخ النص العربي'); copy.addEventListener('click',()=>copyText(p.arabic));
+      article.append(top,arabic,translit,meaning,copy); list.append(article);
+    });
+  }
+  async function copyText(text) {
+    try { if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(text); else { const area=document.createElement('textarea'); area.value=text; area.style.position='fixed'; area.style.opacity='0'; document.body.append(area); area.select(); const ok=document.execCommand('copy'); area.remove(); if(!ok) throw new Error('copy failed'); } showToast(t('Texte copié.','تم نسخ النص.')); }
+    catch { showToast(t('Copie indisponible dans cet aperçu.','النسخ غير متاح في هذه المعاينة.')); }
+  }
+  function renderQuiz() {
+    const item=quiz[quizIndex]; quizAnswered=false;
+    $('quizStep').textContent=t(`Question ${quizIndex+1} / ${quiz.length}`,`السؤال ${quizIndex+1} من ${quiz.length}`);
+    $('quizQuestion').textContent=t(item.qFr,item.qAr); $('quizFeedback').textContent=''; $('nextQuestion').hidden=true; $('nextQuestion').textContent=quizIndex===quiz.length-1?t('Recommencer le quiz ↻','أعد المسابقة ↻'):t('Question suivante →','السؤال التالي ←');
+    const opts=$('quizOptions'); opts.innerHTML='';
+    item.optionsFr.forEach((opt,i)=>{const b=document.createElement('button'); b.type='button'; b.className='quiz-option'; b.textContent=language==='fr'?opt:item.optionsAr[i]; b.addEventListener('click',()=>{ if(quizAnswered)return; quizAnswered=true; opts.querySelectorAll('button').forEach(x=>x.disabled=true); $('quizFeedback').textContent=i===item.answer?t('Bravo, bonne réponse !','أحسنت، إجابة صحيحة!'):t(`Pas tout à fait. La bonne réponse est : ${item.optionsFr[item.answer]}.`,`ليست هذه الإجابة. الإجابة الصحيحة: ${item.optionsAr[item.answer]}.`); $('nextQuestion').hidden=false; }); opts.append(b); });
+  }
+  $('languageToggle').addEventListener('click',()=>{language=language==='fr'?'ar':'fr';safeStore.set('dhikr-noor-language',language);applyLanguage();});
+  $('playWholeSurah').addEventListener('click',()=>{if(!currentRecitationAyahs.length){showToast(t('Charge d’abord une sourate.','حمّل سورة أولًا.'));return;}playFullSurah=true;currentAudioIndex=0;const first=currentRecitationAyahs[0];if(!first.audio){playFullSurah=false;showToast(t('Audio indisponible pour cette sourate.','الصوت غير متاح لهذه السورة.'));return;}$('audioProgress').textContent=t(`Lecture de la sourate entière : verset 1 sur ${currentRecitationAyahs.length}.`,`تشغيل السورة كاملة: الآية 1 من ${currentRecitationAyahs.length}.`);$('quranAudio').src=first.audio;$('quranAudio').load();$('quranAudio').play().catch(()=>{playFullSurah=false;$('audioProgress').textContent=t('Le navigateur a bloqué la lecture. Appuie sur Lecture dans le lecteur audio.','منع المتصفح التشغيل. اضغط على تشغيل في مشغل الصوت.');});});
+  $('quranAudio').addEventListener('ended',()=>{if(!playFullSurah)return;currentAudioIndex++;if(currentAudioIndex>=currentRecitationAyahs.length){playFullSurah=false;$('audioProgress').textContent=t('Sourate terminée.','انتهت السورة.');return;}const next=currentRecitationAyahs[currentAudioIndex];if(next?.audio){$('audioProgress').textContent=t(`Lecture de la sourate entière : verset ${currentAudioIndex+1} sur ${currentRecitationAyahs.length}.`,`تشغيل السورة كاملة: الآية ${currentAudioIndex+1} من ${currentRecitationAyahs.length}.`);$('quranAudio').src=next.audio;$('quranAudio').load();$('quranAudio').play().catch(()=>{playFullSurah=false;$('audioProgress').textContent=t('La lecture automatique a été interrompue. Appuie sur Lecture pour continuer.','توقف التشغيل التلقائي. اضغط على تشغيل للمتابعة.');});}else{playFullSurah=false;$('audioProgress').textContent=t('La récitation complète est interrompue : audio indisponible pour un verset.','توقفت التلاوة الكاملة لأن صوت إحدى الآيات غير متاح.');}});
+  $('loadSurah').addEventListener('click',loadSelectedSurah);
+  $('surahSelect').addEventListener('change',loadSelectedSurah);
+  $('reciterSelect').addEventListener('change',loadSelectedSurah);
+  $('themeToggle').addEventListener('click',()=>{darkMode=!darkMode;document.documentElement.style.colorScheme=darkMode?'dark':'light';document.documentElement.dataset.theme=darkMode?'dark':'light';safeStore.set('dhikr-noor-dark-mode',darkMode);$('themeToggle').textContent=darkMode?'☀':'☾';$('themeToggle').setAttribute('aria-pressed',String(darkMode));$('themeToggle').setAttribute('aria-label',t(darkMode?'Activer le thème clair':'Activer le mode nuit',darkMode?'تفعيل المظهر الفاتح':'تفعيل الوضع الليلي'));});
+  $('menuToggle').addEventListener('click',()=>{const open=$('navLinks').classList.toggle('open');$('menuToggle').setAttribute('aria-expanded',String(open));});
+  $('navLinks').querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{$('navLinks').classList.remove('open');$('menuToggle').setAttribute('aria-expanded','false');}));
+  $('dhikrType').addEventListener('change',e=>{selectedType=e.target.value;saveCounter();renderCounter();});
+  $('goalSelect').addEventListener('change',e=>{goalMode=e.target.value;saveCounter();renderCounter();});
+  $('customGoal').addEventListener('change',e=>{customGoalValue=Math.min(10000,Math.max(1,Number(e.target.value)||1));saveCounter();renderCounter();});
+  $('customDhikr').addEventListener('input',renderCounter);
+  $('plusOne').addEventListener('click',()=>{count++;saveCounter();renderCounter();if(count===currentGoal())showToast(t('Objectif atteint, bravo !','أحسنت، لقد حققت هدفك!'));});
+  $('minusOne').addEventListener('click',()=>{count=Math.max(0,count-1);saveCounter();renderCounter();});
+  $('resetCounter').addEventListener('click',()=>{count=0;saveCounter();renderCounter();showToast(t('Compteur réinitialisé.','تمت إعادة ضبط العداد.'));});
+  $('phraseSearch').addEventListener('input',renderPhrases); $('searchClear').addEventListener('click',()=>{$('phraseSearch').value='';renderPhrases();$('phraseSearch').focus();});
+  $('nextQuestion').addEventListener('click',()=>{quizIndex=(quizIndex+1)%quiz.length;renderQuiz();});
+  $('year').textContent=new Date().getFullYear();
+  loadSurahList();
+  document.documentElement.style.colorScheme = darkMode ? 'dark' : 'light';
+  document.documentElement.dataset.theme = darkMode ? 'dark' : 'light';
+  applyLanguage();
 })();
 </script>
 </body>
