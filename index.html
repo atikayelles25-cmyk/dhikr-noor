@@ -202,6 +202,20 @@ select,input[type="text"] { background:var(--surface); color:var(--text); border
       </div>
     </section>
 
+    <section id="routine">
+      <div class="section-head"><div><h2 data-fr="Ma routine de rappel" data-ar="روتيني للذكر">Ma routine de rappel</h2><p data-fr="Coche les moments que tu as pris pour toi aujourd’hui. Tes choix restent sur cet appareil." data-ar="حدّد الأوقات التي خصّصتها اليوم. تبقى اختياراتك محفوظة على هذا الجهاز.">Coche les moments que tu as pris pour toi aujourd’hui. Tes choix restent sur cet appareil.</p></div></div>
+      <div class="card">
+        <div class="phrase-list" id="routineList">
+          <label class="phrase"><input type="checkbox" data-routine="morning"> <strong data-fr="Mon moment du matin" data-ar="ذكري في الصباح">Mon moment du matin</strong><p class="note" data-fr="Prends quelques instants après le réveil ou la prière du Fajr, selon tes habitudes." data-ar="خصّص بضع لحظات بعد الاستيقاظ أو صلاة الفجر، حسب عادتك.">Prends quelques instants après le réveil ou la prière du Fajr, selon tes habitudes.</p></label>
+          <label class="phrase"><input type="checkbox" data-routine="day"> <strong data-fr="Une pause dans la journée" data-ar="استراحة خلال اليوم">Une pause dans la journée</strong><p class="note" data-fr="Ralentis, respire et choisis un dhikr que tu connais." data-ar="تمهّل وخذ نفسًا واختر ذكرًا تعرفه.">Ralentis, respire et choisis un dhikr que tu connais.</p></label>
+          <label class="phrase"><input type="checkbox" data-routine="evening"> <strong data-fr="Mon moment du soir" data-ar="ذكري في المساء">Mon moment du soir</strong><p class="note" data-fr="Termine la journée par un moment de rappel à ton rythme." data-ar="اختم يومك بوقت للذكر حسب قدرتك.">Termine la journée par un moment de rappel à ton rythme.</p></label>
+        </div>
+        <p class="quran-status" id="routineStatus" role="status" aria-live="polite">0 sur 3 moments cochés aujourd’hui.</p>
+        <button class="btn btn-soft" id="resetRoutine" type="button" data-fr="Réinitialiser ma routine" data-ar="إعادة ضبط روتيني">Réinitialiser ma routine</button>
+        <p class="note" style="margin-top:12px" data-fr="Cette routine est un outil personnel, pas une obligation religieuse. Les données restent dans le navigateur de cet appareil." data-ar="هذا الروتين أداة شخصية وليس واجبًا دينيًا. تبقى البيانات في متصفح هذا الجهاز.">Cette routine est un outil personnel, pas une obligation religieuse. Les données restent dans le navigateur de cet appareil.</p>
+      </div>
+    </section>
+
     <section id="compteur">
       <div class="section-head"><div><h2 data-fr="Compteur de dhikr" data-ar="عداد الذكر">Compteur de dhikr</h2><p data-fr="Tes progrès restent enregistrés sur cet appareil." data-ar="يُحفَظ تقدّمك على هذا الجهاز.">Tes progrès restent enregistrés sur cet appareil.</p></div></div>
       <div class="two-col">
@@ -414,6 +428,12 @@ select,input[type="text"] { background:var(--surface); color:var(--text); border
   $('phraseSearch').addEventListener('input',renderPhrases); $('searchClear').addEventListener('click',()=>{$('phraseSearch').value='';renderPhrases();$('phraseSearch').focus();});
   $('nextQuestion').addEventListener('click',()=>{quizIndex=(quizIndex+1)%quiz.length;renderQuiz();});
   $('year').textContent=new Date().getFullYear();
+  const routineKey='dhikr-noor-routine-'+new Date().toISOString().slice(0,10);
+  function renderRoutine(){const checks=[...document.querySelectorAll('[data-routine]')];let done=0;checks.forEach(input=>{input.checked=safeStore.get(routineKey,{} )[input.dataset.routine]===true;if(input.checked)done++;});$('routineStatus').textContent=t(`${done} sur ${checks.length} moments cochés aujourd’hui.`,`${done} من ${checks.length} أوقات محددة اليوم.`);}
+  document.querySelectorAll('[data-routine]').forEach(input=>input.addEventListener('change',()=>{const saved=safeStore.get(routineKey,{});saved[input.dataset.routine]=input.checked;safeStore.set(routineKey,saved);renderRoutine();}));
+  $('resetRoutine').addEventListener('click',()=>{safeStore.set(routineKey,{});renderRoutine();showToast(t('Routine réinitialisée.','تمت إعادة ضبط الروتين.'));});
+  renderRoutine();
+  $('quranAudio').addEventListener('error',()=>{if($('quranAudio').getAttribute('src')){$('audioProgress').textContent=t('Cette source audio ne répond pas. Essaie un autre récitateur ou une autre sourate.','مصدر الصوت لا يستجيب. جرّب قارئًا آخر أو سورة أخرى.');}});
   loadSurahList();
   document.documentElement.style.colorScheme = darkMode ? 'dark' : 'light';
   document.documentElement.dataset.theme = darkMode ? 'dark' : 'light';
