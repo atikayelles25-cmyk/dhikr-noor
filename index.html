@@ -10,7 +10,7 @@
   color-scheme: light;
   --site-primary: #064E3B;
   --site-secondary: #D8B66D;
-  --site-background: #FBF7EA;
+  --site-background: #FFFFFF;
   --site-on-primary: #FFFFFF;
   --site-on-secondary: #073D30;
   --site-on-background: #12382D;
@@ -21,56 +21,76 @@
   --site-radius-scale: 1;
   --site-decoration-opacity: 1;
   --surface: #FFFFFF;
-  --surface-soft: #F4EEDC;
+  --surface-soft: #F7F8F5;
   --text: #12382D;
   --muted: #68766A;
-  --border: #E5D5A9;
+  --border: #E4E8E3;
   --shadow: 0 12px 30px rgba(6, 54, 40, .10);
 }
 :root[data-theme="dark"] {
-  --site-background: #14251F;
-  --site-on-background: #F5F0E5;
-  --surface: #192B26;
-  --surface-soft: #223830;
-  --text: #F5F0E5;
-  --muted: #C0CFC6;
-  --border: #3B5148;
+  color-scheme: light;
+  --site-background: #FFFFFF;
+  --site-on-background: #12382D;
+  --surface: #FFFFFF;
+  --surface-soft: #F7F8F5;
+  --text: #12382D;
+  --muted: #68766A;
+  --border: #E5D5A9;
 }
-:root[data-theme="dark"] .counter-number { color: var(--site-secondary); }
-:root[data-theme="dark"] .card-icon { color: var(--site-secondary); }
+:root[data-theme="dark"] .counter-number { color: var(--site-primary); }
+:root[data-theme="dark"] .card-icon { color: var(--site-primary); }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { margin: 0; font-family: var(--site-font-body); background: var(--site-background); color: var(--text); }
-#app { min-height: 100vh; width: 100%; border-radius: 0; background-color: var(--site-background); color: var(--site-on-background); overflow: hidden; }
+body { margin: 0; font-family: var(--site-font-body); background: #FFFFFF; color: var(--text); }
+#app { min-height: 100vh; width: 100%; border-radius: 0; background-color: #FFFFFF; color: var(--site-on-background); overflow: hidden; }
 button, input, select { font: inherit; }
 button { cursor: pointer; }
 button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid #C49A43; outline-offset: 3px; }
-.topbar { background: linear-gradient(110deg,#063D30,#07513D); color:#FFFDF6; border-bottom:2px solid #D8B66D; box-shadow:0 4px 18px rgba(6,54,40,.12); }
+.topbar { background: linear-gradient(110deg,#063D30,#07513D); color: #FFFDF6; border-bottom: 2px solid #D8B66D; box-shadow:0 4px 18px rgba(6,54,40,.12); }
 .nav { max-width: 1180px; margin: auto; padding: 16px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
 .brand { display:flex; align-items:center; gap:12px; color:inherit; text-decoration:none; }
 .logo { width:44px; height:44px; border:1px solid rgba(226,197,127,.8); border-radius:50%; display:grid; place-items:center; color:var(--site-secondary); font-size:25px; background:rgba(255,255,255,.06); }
 .brand strong { display:block; font: 700 calc(1.35rem * var(--site-heading-scale)) var(--site-font-heading); letter-spacing:.02em; }
-.brand small { display:block; color:#E4DCC9; font-size:.75rem; margin-top:2px; }
+.brand small { display:block; color:#E8D8AD; font-size:.75rem; margin-top:2px; }
 .nav-right { display:flex; align-items:center; gap:10px; }
 .nav-links { display:flex; align-items:center; gap:6px; }
-.nav-links a { color:#F7F2E7; text-decoration:none; padding:10px 12px; border-radius:10px; font-size:.92rem; }
-.nav-links a:hover { background:rgba(255,255,255,.1); }
-.lang-btn, .menu-btn { border:1px solid rgba(255,255,255,.35); color:#fff; background:transparent; padding:9px 12px; border-radius:999px; }
+.nav-links a { color:#FFFDF6; text-decoration:none; padding:10px 12px; border-radius:10px; font-size:.92rem; }
+.nav-links a:hover { background:rgba(255,255,255,.12); }
+.lang-btn, .menu-btn { border:1px solid rgba(216,182,109,.8); color:#FFFDF6; background:rgba(255,255,255,.06); padding:9px 12px; border-radius:999px; }
 .menu-btn { display:none; }
-main { max-width:1180px; margin:auto; padding:28px 22px 64px; }
-.hero { position:relative; display:grid; grid-template-columns:1.1fr .9fr; gap:28px; align-items:center; background:radial-gradient(ellipse at 80% 50%,#E8E1C9 0%,#FFFDF6 46%,#F7F0DE 100%); color:#12382D; border:1px solid rgba(216,182,109,.9); border-radius:calc(28px * var(--site-radius-scale)); padding:clamp(28px,5vw,58px); overflow:hidden; box-shadow:var(--shadow); }
+main { max-width:1180px; margin:auto; padding:28px 22px 64px; background-color:#FFFFFF; background-image:linear-gradient(rgba(255,255,255,.70),rgba(255,255,255,.70)),url('https://commons.wikimedia.org/wiki/Special:FilePath/Al-Masjed%20Al-Nabawi%20inside%20Rawda.JPG'),url('https://commons.wikimedia.org/wiki/Special:FilePath/Rawdah%20(The%20Green%20Dome)%20front.jpg'); background-position:center,left 12%,right 68%; background-size:cover,360px auto,360px auto; background-repeat:repeat,no-repeat,no-repeat; }
+.hero { position:relative; display:grid; grid-template-columns:1.1fr .9fr; gap:28px; align-items:center; background:rgba(255,255,255,.91); color:#12382D; border:2px solid #D8B66D; border-radius:calc(28px * var(--site-radius-scale)); padding:clamp(28px,5vw,58px); overflow:hidden; box-shadow:0 14px 34px rgba(6,78,59,.14); }
 .hero:after { content:"☾"; position:absolute; right:8%; top:-58px; font-size:clamp(170px,27vw,330px); color:var(--site-secondary); opacity:calc(.12 * var(--site-decoration-opacity)); pointer-events:none; line-height:1; }
 .eyebrow { color:var(--site-secondary); text-transform:uppercase; letter-spacing:.16em; font-size:.76rem; font-weight:800; }
 h1,h2,h3 { font-family:var(--site-font-heading); }
 h1 { font-size:calc(clamp(2.4rem,5vw,4.6rem) * var(--site-heading-scale)); line-height:1.04; margin:14px 0 18px; font-weight:600; }
-.hero p { color:#E6EEE8; max-width:560px; line-height:1.75; font-size:1.04rem; }
+.hero p { color:#52685B; max-width:560px; line-height:1.75; font-size:1.04rem; }
 .hero-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:25px; }
 .btn { display:inline-flex; justify-content:center; align-items:center; gap:8px; border:1px solid transparent; border-radius:999px; padding:12px 18px; font-weight:750; text-decoration:none; transition:transform .15s ease, background .15s ease; }
 .btn:hover { transform:translateY(-1px); }
 .btn-gold { background:var(--site-secondary); color:var(--site-on-secondary); }
-.btn-outline { border-color:rgba(255,255,255,.48); color:white; background:transparent; }
+.btn-outline { border-color:rgba(6,78,59,.5); color:#064E3B; background:rgba(255,255,255,.7); }
 .hero-art { position:relative; z-index:1; display:grid; place-items:center; min-height:220px; }
-.medina-mosque { width:min(100%,390px); height:auto; filter:drop-shadow(0 12px 24px rgba(216,182,109,.12)); }\n.medina-mosque g[fill="#111"] { fill:#064E3B; }
+.medina-mosque { width:min(100%,390px); height:auto; filter:drop-shadow(0 12px 24px rgba(216,182,109,.12)); }
+.medina-mosque g[fill="#111"] { fill:#064E3B; }
+.medina-gallery { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:18px; }
+.medina-ribbon { display:grid; grid-template-columns:1.2fr .8fr; gap:14px; margin:22px 0 8px; }
+.medina-ribbon figure { margin:0; min-width:0; overflow:hidden; border:1px solid rgba(216,182,109,.75); border-radius:20px; background:#FFFFFF; box-shadow:var(--shadow); }
+.medina-ribbon img { display:block; width:100%; height:clamp(150px,24vw,260px); object-fit:cover; background:linear-gradient(135deg,#064E3B,#0D6B50 55%,#D8B66D); }
+.medina-ribbon figcaption { padding:10px 14px; color:#064E3B; font-size:.88rem; }
+.medina-gallery .medina-view img { aspect-ratio:4/3; object-position:center; }
+.medina-view:first-child img { object-position:center 42%; }
+.medina-view:nth-child(2) img { object-position:center 35%; }
+.medina-view { background:#FFFFFF; }
+.medina-view { margin:0; overflow:hidden; border:1px solid rgba(216,182,109,.7); border-radius:16px; background:#FFFFFF; }
+.medina-view { min-width:0; }
+.medina-view img { display:block; width:100%; aspect-ratio:4/3; object-fit:cover; background:linear-gradient(135deg,#064E3B,#0D6B50 55%,#D8B66D); color:#FFFFFF; }
+.medina-view .photo-fallback { display:none; width:100%; aspect-ratio:4/3; }
+.medina-view img.image-failed + .photo-fallback { display:grid; place-items:center; text-align:center; padding:20px; color:#FFFDF6; font-family:Georgia,serif; font-size:1.05rem; line-height:1.8; background:radial-gradient(circle at 50% 35%,#14765A 0%,#064E3B 58%,#032F25 100%); border-bottom:2px solid #D8B66D; }
+.medina-view img.image-failed { display:none; }
+.medina-view:has(img.image-failed)::before { content:"☾\A\A المسجد النبوي\A\A Médine · Mosquée et lieux de prière"; white-space:pre-line; display:grid; place-items:center; text-align:center; min-height:240px; padding:24px; color:#FFFDF6; font-family:Georgia,serif; font-size:1.1rem; line-height:1.8; background:radial-gradient(circle at 50% 35%,#14765A 0%,#064E3B 58%,#032F25 100%); border-bottom:2px solid #D8B66D; }
+.medina-view figcaption { padding:10px 12px; color:#064E3B; font-size:.85rem; line-height:1.5; }
+.medina-note { color:var(--muted); font-size:.85rem; line-height:1.6; margin:12px 0 0; }
 .mandala { width:min(100%,280px); aspect-ratio:1; border:1px solid rgba(216,182,109,.65); border-radius:50%; display:grid; place-items:center; position:relative; }
 .mandala:before,.mandala:after { content:""; position:absolute; inset:13%; border:1px solid rgba(216,182,109,.5); transform:rotate(45deg); border-radius:32%; }
 .mandala:after { transform:rotate(22.5deg); inset:20%; }
@@ -81,11 +101,11 @@ h1 { font-size:calc(clamp(2.4rem,5vw,4.6rem) * var(--site-heading-scale)); line-
 .section-head h2 { font-size:calc(2rem * var(--site-heading-scale)); margin:0 0 5px; }
 .section-head p { color:var(--muted); margin:0; }
 .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
-.card { background:var(--surface); border:1px solid var(--border); border-radius:calc(20px * var(--site-radius-scale)); padding:22px; box-shadow:var(--shadow); min-width:0; }
-.card-icon { width:46px; height:46px; border-radius:14px; display:grid; place-items:center; color:var(--site-primary); background:light-dark(#E9E1CC,#2E493E); font-size:1.35rem; margin-bottom:16px; }
+.card { background:rgba(255,255,255,.94); border:1px solid #D8B66D; border-radius:calc(20px * var(--site-radius-scale)); padding:22px; box-shadow:var(--shadow); min-width:0; }
+.card-icon { width:46px; height:46px; border-radius:14px; display:grid; place-items:center; color:var(--site-primary); background:#F4E8C8; font-size:1.35rem; margin-bottom:16px; }
 .card h3 { font-size:1.35rem; margin:0 0 8px; }
 .card p { color:var(--muted); line-height:1.6; margin:0 0 16px; }
-.text-link { color:light-dark(#075846,#D8B66D); font-weight:800; text-decoration:none; }
+.text-link { color:#064E3B; font-weight:800; text-decoration:none; }
 .text-link:hover { text-decoration:underline; }
 .two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
 .counter-card { background:var(--surface); border:1px solid var(--border); border-radius:calc(22px * var(--site-radius-scale)); padding:26px; text-align:center; }
@@ -93,7 +113,7 @@ h1 { font-size:calc(clamp(2.4rem,5vw,4.6rem) * var(--site-heading-scale)); line-
 .tasbih-wrap { display:flex; flex-direction:column; align-items:center; gap:14px; margin:22px auto 18px; }
 .tasbih-beads { width:min(100%,310px); aspect-ratio:1; position:relative; border-radius:50%; margin:auto; }
 .tasbih-bead { position:absolute; left:50%; top:50%; width:clamp(12px,4vw,19px); height:clamp(12px,4vw,19px); border-radius:50%; background:linear-gradient(145deg,#E7D39A,#A98238); border:2px solid #F7E8BD; box-shadow:0 2px 5px rgba(20,30,20,.18); transform:translate(-50%,-50%); }
-.tasbih-bead.active { background:var(--site-primary); border-color:var(--site-secondary); box-shadow:0 0 0 3px rgba(216,182,109,.2); }
+.tasbih-bead.active { background:#064E3B; border-color:var(--site-secondary); box-shadow:0 0 0 3px rgba(6,78,59,.18); }
 .tasbih-tassel { width:5px; height:28px; background:var(--site-secondary); border-radius:0 0 8px 8px; margin-top:-14px; }
 .tasbih-center { position:absolute; inset:30%; border:2px solid var(--site-secondary); border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; background:var(--surface); box-shadow:inset 0 0 0 5px var(--surface-soft); }
 .tasbih-center .counter-number { font-size:clamp(2.1rem,8vw,3.5rem); line-height:1.1; }
@@ -130,7 +150,7 @@ select,input[type="text"] { background:var(--surface); color:var(--text); border
 .quran-ayahs { display:grid; gap:12px; }
 .quran-ayah { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:18px; }
 .quran-ayah-head { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px; }
-.quran-ayah-number { color:var(--site-primary); background:var(--surface-soft); border-radius:999px; padding:5px 10px; font-size:.82rem; font-weight:800; }
+.quran-ayah-number { color:#064E3B; background:var(--surface-soft); border-radius:999px; padding:5px 10px; font-size:.82rem; font-weight:800; }
 .quran-ayah .arabic { font-size:clamp(1.7rem,4vw,2.25rem); text-align:right; margin:12px 0; line-height:2.1; }
 .quran-translation { color:var(--muted); line-height:1.75; margin:8px 0 14px; }
 .quran-status { color:var(--muted); line-height:1.6; margin:10px 0; }
@@ -143,21 +163,23 @@ select,input[type="text"] { background:var(--surface); color:var(--text); border
 .quiz-feedback { min-height:24px; margin-top:12px; font-weight:700; }
 .footer { border-top:1px solid var(--border); padding:26px 22px; color:var(--muted); text-align:center; font-size:.9rem; }
 .toast { position:fixed; bottom:18px; left:50%; transform:translateX(-50%); background:var(--site-primary); color:white; padding:12px 18px; border-radius:999px; box-shadow:var(--shadow); z-index:20; display:none; max-width:calc(100vw - 32px); }
-[data-theme="dark"] .topbar, [data-theme="dark"] .hero { --site-primary:#101010; }
-[data-theme="dark"] .btn-primary { background:#176B53; }
-[data-theme="dark"] .text-link { color:var(--site-secondary); }
-[data-theme="dark"] .logo { background:rgba(216,182,109,.1); }
+[data-theme="dark"] .topbar { background:linear-gradient(110deg,#063D30,#07513D); color:#FFFDF6; }
+[data-theme="dark"] .hero { background:rgba(255,255,255,.97); color:#12382D; }
+[data-theme="dark"] .btn-primary { background:#064E3B; color:#FFFDF6; }
+[data-theme="dark"] .text-link { color:#064E3B; }
+[data-theme="dark"] .logo { background:rgba(255,255,255,.06); }
 [dir="rtl"] .hero, [dir="rtl"] .section-head, [dir="rtl"] .phrase-top { text-align:right; }
 [dir="rtl"] .quiz-option { text-align:right; }
 [dir="rtl"] .nav { direction:rtl; }
 [dir="rtl"] .searchbar { direction:rtl; }
 [dir="rtl"] .counter-controls { direction:ltr; }
 [hidden] { display:none !important; }
-@media (prefers-color-scheme: dark) { .counter-number { color:#D8B66D; } }
+@media (max-width:560px) { .medina-ribbon { grid-template-columns:1fr; gap:10px; } .medina-ribbon img { height:190px; } }
+@media (prefers-color-scheme: dark) { :root { color-scheme:light; } body,#app,main { background:#FFFFFF; color:#12382D; } .counter-number { color:#064E3B; } }
 @media (max-width:800px) { .hero { grid-template-columns:1fr; } .hero-art { min-height:190px; } .grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .nav-links { display:none; position:absolute; top:74px; left:12px; right:12px; background:var(--site-primary); border:1px solid rgba(255,255,255,.2); border-radius:16px; padding:10px; z-index:10; flex-direction:column; align-items:stretch; } .nav-links.open { display:flex; } .nav-links a { padding:12px; } .menu-btn { display:inline-flex; } }
-@media (max-width:560px) { main { padding:18px 14px 42px; } .nav { padding:12px 14px; } .brand small { display:none; } .hero { padding:26px 22px; border-radius:20px; } .grid,.two-col { grid-template-columns:1fr; } .section-head { align-items:start; flex-direction:column; margin-top:32px; } .section-head h2 { font-size:1.75rem; } .card { padding:19px; } .counter-display { width:165px; height:165px; } .tasbih-beads { width:min(100%,280px); } .searchbar { flex-direction:column; } .phrase-top { flex-direction:column; } }
+@media (max-width:560px) { main { padding:18px 14px 42px; background-size:cover,220px auto,220px auto; background-position:center,left 8%,right 72%; } .nav { padding:12px 14px; } .brand small { display:none; } .hero { padding:26px 22px; border-radius:20px; } .grid,.two-col { grid-template-columns:1fr; } .section-head { align-items:start; flex-direction:column; margin-top:32px; } .section-head h2 { font-size:1.75rem; } .card { padding:19px; } .counter-display { width:165px; height:165px; } .tasbih-beads { width:min(100%,280px); } .searchbar { flex-direction:column; } .phrase-top { flex-direction:column; } }
 @media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior:auto !important; transition:none !important; } }
-.medina-gallery { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:18px; } .medina-view { margin:0; min-width:0; overflow:hidden; border:1px solid var(--border); border-radius:16px; background:#FFF; } .medina-view img { display:block; width:100%; aspect-ratio:4/3; object-fit:cover; background:linear-gradient(135deg,#064E3B,#0D6B50 55%,#D8B66D); color:#FFF; } .medina-view img.image-failed { display:none; } .medina-view:has(img.image-failed)::before { content:"☾\\A\\A المسجد النبوي\\A\\A Médine · Mosquée et lieux de prière"; white-space:pre-line; display:grid; place-items:center; text-align:center; min-height:200px; padding:20px; color:#FFFDF6; font-family:Georgia,serif; line-height:1.8; background:radial-gradient(circle at 50% 35%,#14765A,#064E3B 65%,#032F25); border-bottom:2px solid #D8B66D; } .medina-view figcaption { padding:10px 12px; color:#064E3B; font-size:.85rem; } .medina-note { color:var(--muted); font-size:.85rem; line-height:1.6; margin:12px 0 0; }\n</style>
+</style>
 </head>
 <body>
 <div id="app" data-sites-preview-theme="custom">
@@ -191,12 +213,20 @@ select,input[type="text"] { background:var(--surface); color:var(--text); border
       <div class="hero-art" aria-label="Illustration stylisée de la Mosquée du Prophète à Médine" role="img"><svg class="medina-mosque" viewBox="0 0 420 330" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="gold" x1="0" y1="0" x2="0.9" y2="1"><stop offset="0" stop-color="#F7E5AE"/><stop offset=".5" stop-color="#D8B66D"/><stop offset="1" stop-color="#8E672B"/></linearGradient></defs><circle cx="210" cy="158" r="145" fill="none" stroke="url(#gold)" stroke-opacity=".35"/><circle cx="210" cy="158" r="126" fill="none" stroke="url(#gold)" stroke-opacity=".2" stroke-dasharray="3 8"/><g fill="#111" stroke="url(#gold)" stroke-width="2.2" stroke-linejoin="round"><path d="M65 260V191h30v-21h18v21h20v-33h14v33h18v-48q0-38 35-57q35 19 35 57v48h18v-33h14v33h20v-21h18v21h30v69z"/><path d="M157 143q0-37 43-58q43 21 43 58v14H157z" fill="#D8B66D" fill-opacity=".17"/><path d="M181 260v-60q0-22 19-34q19 12 19 34v60"/><path d="M54 260V105h13V80h8v25h13v155M332 260V105h13V80h8v25h13v155"/><path d="M47 80h47l-23-32zM325 80h47l-23-32z" fill="url(#gold)"/><path d="M70 48V30h4V18h5v12h4v18M348 48V30h4V18h5v12h4v18" fill="url(#gold)"/><path d="M36 260h348M48 275h324" stroke-width="3"/><path d="M100 260v-25q0-15 12-15t12 15v25M142 260v-25q0-15 12-15t12 15v25M254 260v-25q0-15 12-15t12 15v25M296 260v-25q0-15 12-15t12 15v25" fill="#D8B66D" fill-opacity=".18"/><path d="M200 95v-22h20v22M207 73V60h6v13" fill="url(#gold)"/></g><path d="M210 34l5 10 11 2-8 8 2 11-10-5-10 5 2-11-8-8 11-2z" fill="url(#gold)"/><text x="210" y="310" fill="#D8B66D" font-family="Georgia,serif" font-size="13" letter-spacing="3" text-anchor="middle">AL-MASJID AN-NABAWI · MADINAH</text></svg></div>
     </section>
 
+    <section class="medina-ribbon" aria-label="Photographies de Médine">
+      <figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Al-Masjed%20Al-Nabawi%20inside%20Rawda.JPG" alt="Vue intérieure de la Mosquée du Prophète à Médine" loading="lazy" onerror="this.style.display='none'"><figcaption>La sérénité de la Mosquée du Prophète ﷺ</figcaption></figure>
+      <figure><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Rawdah%20(The%20Green%20Dome)%20front.jpg" alt="Le dôme vert de Médine" loading="lazy" onerror="this.style.display='none'"><figcaption>Le dôme vert de Médine</figcaption></figure>
+    </section>
+
     <section id="medine" aria-labelledby="medinaTitle">
-      <div class="section-head"><div><h2 id="medinaTitle" data-fr="Au cœur de Médine" data-ar="في رحاب المدينة المنورة">Au cœur de Médine</h2><p data-fr="Découvre les lieux saints dans un espace de contemplation." data-ar="اكتشف الأماكن المقدسة في مساحة من السكينة.">Découvre les lieux saints dans un espace de contemplation.</p></div></div>
-      <div class="card"><div class="medina-gallery">
-        <figure class="medina-view"><img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=900&q=85" alt="Architecture intérieure d'une mosquée, arches et décor islamique" loading="lazy" onerror="this.classList.add('image-failed')"><figcaption data-fr="L’intérieur de la mosquée — arches et lumière" data-ar="داخل المسجد — أقواس ونور">L’intérieur de la mosquée — arches et lumière</figcaption></figure>
-        <figure class="medina-view"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=900&q=85" alt="Vue d’un espace de prière dans un lieu saint de Médine" loading="lazy" onerror="this.classList.add('image-failed')"><figcaption data-fr="Médine — un lieu de prière et de sérénité" data-ar="المدينة المنورة — مكان للصلاة والسكينة">Médine — un lieu de prière et de sérénité</figcaption></figure>
-      </div><p class="medina-note" data-fr="Si une photo ne se charge pas, un visuel de secours s’affiche." data-ar="إذا لم يتم تحميل الصورة، فسيظهر تصميم بديل.">Si une photo ne se charge pas, un visuel de secours s’affiche.</p></div>
+      <div class="section-head"><div><h2 id="medinaTitle" data-fr="Au cœur de Médine" data-ar="في رحاب المدينة المنورة">Au cœur de Médine</h2><p data-fr="Découvre l’intérieur de la Mosquée du Prophète ﷺ et la Rawda dans un espace de contemplation." data-ar="اكتشف داخل المسجد النبوي الشريف والروضة في مساحة للتأمل والسكينة.">Découvre l’intérieur de la Mosquée du Prophète ﷺ et la Rawda dans un espace de contemplation.</p></div></div>
+      <div class="card">
+        <div class="medina-gallery">
+          <figure class="medina-view"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Al-Masjed%20Al-Nabawi%20inside%20Rawda.JPG" alt="Vue photographique de l’intérieur de la Rawda dans la Mosquée du Prophète à Médine" loading="lazy" onerror="this.classList.add('image-failed')"><div class="photo-fallback" role="img" aria-label="Illustration décorative de la mosquée de Médine">☾<br>المسجد النبوي<br>Médine · Mosquée et lieux de prière</div><figcaption data-fr="À l’intérieur de la Rawda — Mosquée du Prophète ﷺ" data-ar="داخل الروضة الشريفة — المسجد النبوي">À l’intérieur de la Rawda — Mosquée du Prophète ﷺ</figcaption></figure>
+          <figure class="medina-view"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Rawdah%20(The%20Green%20Dome)%20front.jpg" alt="Le dôme vert de la Mosquée du Prophète ﷺ à Médine" loading="lazy" onerror="this.classList.add('image-failed')"><div class="photo-fallback" role="img" aria-label="Illustration décorative de la mosquée de Médine">☾<br>المسجد النبوي<br>Médine · Mosquée et lieux de prière</div><figcaption data-fr="Le dôme vert de la Mosquée du Prophète ﷺ à Médine" data-ar="القبة الخضراء للمسجد النبوي الشريف بالمدينة المنورة">Le dôme vert de la Mosquée du Prophète ﷺ à Médine</figcaption></figure>
+        </div>
+        <p class="medina-note" data-fr="Les photographies illustrent l’ambiance des lieux saints et peuvent ne pas représenter exactement la Rawda ou l’intérieur actuel de la Mosquée du Prophète ﷺ. Vérifie les images et leur provenance avant publication définitive." data-ar="تعرض الصور أجواء الأماكن المقدسة وقد لا تمثل الروضة أو داخل المسجد النبوي الحالي بدقة. يُرجى التحقق من الصور ومصدرها قبل النشر النهائي.">Les photographies illustrent l’ambiance des lieux saints et peuvent ne pas représenter exactement la Rawda ou l’intérieur actuel de la Mosquée du Prophète ﷺ. Vérifie les images et leur provenance avant publication définitive.</p>
+      </div>
     </section>
 
     <section id="outils">
@@ -250,7 +280,7 @@ select,input[type="text"] { background:var(--surface); color:var(--text); border
           </div>
           <div class="form-row"><label for="goalSelect" data-fr="Objectif" data-ar="الهدف">Objectif</label><select id="goalSelect"><option value="33">33</option><option value="100">100</option><option value="custom">Autre</option></select><input id="customGoal" type="number" min="1" max="10000" value="50" aria-label="Objectif personnalisé" hidden style="width:95px" /></div>
           <div class="progress-track" role="progressbar" aria-label="Progression vers l’objectif" aria-valuemin="0" aria-valuemax="33" aria-valuenow="0" id="progressTrack"><div class="progress-fill" id="progressFill"></div></div><div class="note" id="progressText">0 sur 33</div>
-          <div class="counter-controls" style="margin-top:18px"><button class="btn btn-primary" id="plusOne" type="button">＋ 1</button><button class="btn btn-soft" id="minusOne" type="button">− 1</button><button class="btn btn-soft" id="resetCounter" type="button" data-fr="Réinitialiser" data-ar="إعادة الضبط">Réinitialiser</button></div>
+          <div class="counter-controls" style="margin-top:18px"><button class="btn btn-primary" id="plusOneQuick" type="button">＋ 1</button><button class="btn btn-soft" id="minusOne" type="button">− 1</button><button class="btn btn-soft" id="resetCounter" type="button" data-fr="Réinitialiser" data-ar="إعادة الضبط">Réinitialiser</button></div>
           <p class="note" id="counterSaved" style="margin-top:14px" data-fr="Sauvegarde locale activée si ton navigateur l’autorise." data-ar="الحفظ المحلي مفعّل إذا سمح المتصفح بذلك.">Sauvegarde locale activée si ton navigateur l’autorise.</p>
         </div>
         <div class="card"><div class="card-icon" aria-hidden="true">✦</div><h3 data-fr="Un rappel à la fois" data-ar="ذِكرٌ في كل مرة">Un rappel à la fois</h3><p data-fr="Choisis une formule que tu connais et avance tranquillement. Les objectifs proposés sont de simples réglages personnels, pas une obligation religieuse." data-ar="اختر ذكرًا تعرفه وتقدّم بهدوء. الأهداف المقترحة إعدادات شخصية وليست واجبًا دينيًا.">Choisis une formule que tu connais et avance tranquillement. Les objectifs proposés sont de simples réglages personnels, pas une obligation religieuse.</p><div class="invocation"><div class="arabic" id="selectedArabic">سُبْحَانَ اللَّهِ</div><p id="selectedTranslit" style="font-weight:750;margin:8px 0;color:var(--text)">Subhan Allah</p><p class="note" id="selectedMeaning" style="margin:0">Gloire à Allah. Traduction du sens, donnée à titre indicatif.</p></div></div>
@@ -290,20 +320,25 @@ select,input[type="text"] { background:var(--surface); color:var(--text); border
   function playBeadClick() {
     try {
       const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-      if (!AudioContextClass) return;
-      dhikrAudioContext = dhikrAudioContext || new AudioContextClass();
-      if (dhikrAudioContext.state === 'suspended') dhikrAudioContext.resume();
-      const now = dhikrAudioContext.currentTime;
-      const oscillator = dhikrAudioContext.createOscillator();
-      const gain = dhikrAudioContext.createGain();
-      oscillator.type = 'triangle';
-      oscillator.frequency.setValueAtTime(1150, now);
-      oscillator.frequency.exponentialRampToValueAtTime(620, now + 0.035);
-      gain.gain.setValueAtTime(0.0001, now);
-      gain.gain.exponentialRampToValueAtTime(0.12, now + 0.004);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.055);
-      oscillator.connect(gain); gain.connect(dhikrAudioContext.destination);
-      oscillator.start(now); oscillator.stop(now + 0.06);
+      if (AudioContextClass) {
+        dhikrAudioContext = dhikrAudioContext || new AudioContextClass();
+        if (dhikrAudioContext.state === 'suspended') dhikrAudioContext.resume();
+        const now = dhikrAudioContext.currentTime;
+        const oscillator = dhikrAudioContext.createOscillator();
+        const gain = dhikrAudioContext.createGain();
+        oscillator.type = 'triangle';
+        oscillator.frequency.setValueAtTime(1150, now);
+        oscillator.frequency.exponentialRampToValueAtTime(620, now + 0.035);
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.exponentialRampToValueAtTime(0.12, now + 0.004);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.055);
+        oscillator.connect(gain); gain.connect(dhikrAudioContext.destination);
+        oscillator.start(now); oscillator.stop(now + 0.06);
+        return;
+      }
+      const audio = new Audio('data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=');
+      audio.volume = 0.3;
+      audio.play().catch(() => {});
     } catch { /* Le compteur reste utilisable si le son est bloqué. */ }
   }
   const phrases = [
@@ -482,6 +517,7 @@ select,input[type="text"] { background:var(--surface); color:var(--text); border
   $('customDhikr').addEventListener('input',renderCounter);
   const incrementDhikr=()=>{playBeadClick();count++;saveCounter();renderCounter();if(count===currentGoal())showToast(t('Objectif atteint, bravo !','أحسنت، لقد حققت هدفك!'));};
   $('plusOne').addEventListener('click',incrementDhikr);
+  if ($('plusOneQuick')) $('plusOneQuick').addEventListener('click',incrementDhikr);
   $('minusOne').addEventListener('click',()=>{count=Math.max(0,count-1);saveCounter();renderCounter();});
   $('resetCounter').addEventListener('click',()=>{count=0;saveCounter();renderCounter();showToast(t('Compteur réinitialisé.','تمت إعادة ضبط العداد.'));});
   $('phraseSearch').addEventListener('input',renderPhrases); $('searchClear').addEventListener('click',()=>{$('phraseSearch').value='';renderPhrases();$('phraseSearch').focus();});
