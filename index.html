@@ -7,25 +7,25 @@
 <title>Dhikr Noor — Le rappel au cœur de chaque journée</title>
 <style>
 :root {
-  color-scheme: light;
-  --site-primary: #075846;
+  color-scheme: dark;
+  --site-primary: #101010;
   --site-secondary: #D8B66D;
-  --site-background: #F7F3E9;
-  --site-on-primary: #FFFFFF;
-  --site-on-secondary: #18372F;
-  --site-on-background: #19382F;
+  --site-background: #090909;
+  --site-on-primary: #F8F2E5;
+  --site-on-secondary: #17130B;
+  --site-on-background: #F5F0E5;
   --site-font-body: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --site-font-heading: Georgia, "Times New Roman", serif;
   --site-heading-scale: 1;
   --site-spacing-scale: 1;
   --site-radius-scale: 1;
   --site-decoration-opacity: 1;
-  --surface: light-dark(#FFFEFA, #192B26);
-  --surface-soft: light-dark(#EEE8D9, #223830);
-  --text: light-dark(#19382F, #F5F0E5);
-  --muted: light-dark(#66766D, #C0CFC6);
-  --border: light-dark(#DCD7C8, #3B5148);
-  --shadow: 0 12px 30px rgba(14, 50, 39, .08);
+  --surface: #151515;
+  --surface-soft: #211D15;
+  --text: #F5F0E5;
+  --muted: #C4BBA7;
+  --border: #5A4828;
+  --shadow: 0 16px 38px rgba(0, 0, 0, .3);
 }
 :root[data-theme="dark"] {
   --site-background: #14251F;
@@ -45,7 +45,7 @@ body { margin: 0; font-family: var(--site-font-body); background: var(--site-bac
 button, input, select { font: inherit; }
 button { cursor: pointer; }
 button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid #C49A43; outline-offset: 3px; }
-.topbar { background: var(--site-primary); color: var(--site-on-primary); border-bottom: 1px solid rgba(255,255,255,.13); }
+.topbar { background: #050505; color: var(--site-on-primary); border-bottom: 1px solid rgba(216,182,109,.42); }
 .nav { max-width: 1180px; margin: auto; padding: 16px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
 .brand { display:flex; align-items:center; gap:12px; color:inherit; text-decoration:none; }
 .logo { width:44px; height:44px; border:1px solid rgba(226,197,127,.8); border-radius:50%; display:grid; place-items:center; color:var(--site-secondary); font-size:25px; background:rgba(255,255,255,.06); }
@@ -58,7 +58,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .lang-btn, .menu-btn { border:1px solid rgba(255,255,255,.35); color:#fff; background:transparent; padding:9px 12px; border-radius:999px; }
 .menu-btn { display:none; }
 main { max-width:1180px; margin:auto; padding:28px 22px 64px; }
-.hero { position:relative; display:grid; grid-template-columns:1.25fr .75fr; gap:28px; align-items:center; background:var(--site-primary); color:white; border-radius:calc(28px * var(--site-radius-scale)); padding:clamp(28px,5vw,58px); overflow:hidden; box-shadow:var(--shadow); }
+.hero { position:relative; display:grid; grid-template-columns:1.1fr .9fr; gap:28px; align-items:center; background:radial-gradient(ellipse at 80% 50%,#292114 0%,#111 46%,#080808 100%); color:#F8F2E5; border:1px solid rgba(216,182,109,.55); border-radius:calc(28px * var(--site-radius-scale)); padding:clamp(28px,5vw,58px); overflow:hidden; box-shadow:var(--shadow); }
 .hero:after { content:"☾"; position:absolute; right:8%; top:-58px; font-size:clamp(170px,27vw,330px); color:var(--site-secondary); opacity:calc(.12 * var(--site-decoration-opacity)); pointer-events:none; line-height:1; }
 .eyebrow { color:var(--site-secondary); text-transform:uppercase; letter-spacing:.16em; font-size:.76rem; font-weight:800; }
 h1,h2,h3 { font-family:var(--site-font-heading); }
@@ -70,6 +70,7 @@ h1 { font-size:calc(clamp(2.4rem,5vw,4.6rem) * var(--site-heading-scale)); line-
 .btn-gold { background:var(--site-secondary); color:var(--site-on-secondary); }
 .btn-outline { border-color:rgba(255,255,255,.48); color:white; background:transparent; }
 .hero-art { position:relative; z-index:1; display:grid; place-items:center; min-height:220px; }
+.medina-mosque { width:min(100%,390px); height:auto; filter:drop-shadow(0 12px 24px rgba(216,182,109,.12)); }
 .mandala { width:min(100%,280px); aspect-ratio:1; border:1px solid rgba(216,182,109,.65); border-radius:50%; display:grid; place-items:center; position:relative; }
 .mandala:before,.mandala:after { content:""; position:absolute; inset:13%; border:1px solid rgba(216,182,109,.5); transform:rotate(45deg); border-radius:32%; }
 .mandala:after { transform:rotate(22.5deg); inset:20%; }
@@ -142,7 +143,7 @@ select,input[type="text"] { background:var(--surface); color:var(--text); border
 .quiz-feedback { min-height:24px; margin-top:12px; font-weight:700; }
 .footer { border-top:1px solid var(--border); padding:26px 22px; color:var(--muted); text-align:center; font-size:.9rem; }
 .toast { position:fixed; bottom:18px; left:50%; transform:translateX(-50%); background:var(--site-primary); color:white; padding:12px 18px; border-radius:999px; box-shadow:var(--shadow); z-index:20; display:none; max-width:calc(100vw - 32px); }
-[data-theme="dark"] .topbar, [data-theme="dark"] .hero { --site-primary:#123D32; }
+[data-theme="dark"] .topbar, [data-theme="dark"] .hero { --site-primary:#101010; }
 [data-theme="dark"] .btn-primary { background:#176B53; }
 [data-theme="dark"] .text-link { color:var(--site-secondary); }
 [data-theme="dark"] .logo { background:rgba(216,182,109,.1); }
@@ -187,7 +188,7 @@ select,input[type="text"] { background:var(--surface); color:var(--text); border
         <p data-fr="Un espace simple et apaisant pour compter tes dhikr, retrouver des invocations de démonstration et apprendre en famille, à ton rythme." data-ar="مساحة هادئة وبسيطة لعدّ الأذكار، واستكشاف أمثلة من الأدعية، والتعلّم مع العائلة حسب وقتك.">Un espace simple et apaisant pour compter tes dhikr, retrouver des invocations de démonstration et apprendre en famille, à ton rythme.</p>
         <div class="hero-actions"><a class="btn btn-gold" href="#compteur" data-fr="Commencer un dhikr →" data-ar="ابدأ الذكر ←">Commencer un dhikr →</a><a class="btn btn-outline" href="#invocations" data-fr="Explorer les invocations" data-ar="استكشف الأذكار">Explorer les invocations</a></div>
       </div>
-      <div class="hero-art" aria-hidden="true"><div class="mandala"><div class="mandala-inner"><div class="arabic">ذِكْر</div><span>Dhikr Noor</span></div></div></div>
+      <div class="hero-art" aria-label="Illustration stylisée de la Mosquée du Prophète à Médine" role="img"><svg class="medina-mosque" viewBox="0 0 420 330" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="gold" x1="0" y1="0" x2="0.9" y2="1"><stop offset="0" stop-color="#F7E5AE"/><stop offset=".5" stop-color="#D8B66D"/><stop offset="1" stop-color="#8E672B"/></linearGradient></defs><circle cx="210" cy="158" r="145" fill="none" stroke="url(#gold)" stroke-opacity=".35"/><circle cx="210" cy="158" r="126" fill="none" stroke="url(#gold)" stroke-opacity=".2" stroke-dasharray="3 8"/><g fill="#111" stroke="url(#gold)" stroke-width="2.2" stroke-linejoin="round"><path d="M65 260V191h30v-21h18v21h20v-33h14v33h18v-48q0-38 35-57q35 19 35 57v48h18v-33h14v33h20v-21h18v21h30v69z"/><path d="M157 143q0-37 43-58q43 21 43 58v14H157z" fill="#D8B66D" fill-opacity=".17"/><path d="M181 260v-60q0-22 19-34q19 12 19 34v60"/><path d="M54 260V105h13V80h8v25h13v155M332 260V105h13V80h8v25h13v155"/><path d="M47 80h47l-23-32zM325 80h47l-23-32z" fill="url(#gold)"/><path d="M70 48V30h4V18h5v12h4v18M348 48V30h4V18h5v12h4v18" fill="url(#gold)"/><path d="M36 260h348M48 275h324" stroke-width="3"/><path d="M100 260v-25q0-15 12-15t12 15v25M142 260v-25q0-15 12-15t12 15v25M254 260v-25q0-15 12-15t12 15v25M296 260v-25q0-15 12-15t12 15v25" fill="#D8B66D" fill-opacity=".18"/><path d="M200 95v-22h20v22M207 73V60h6v13" fill="url(#gold)"/></g><path d="M210 34l5 10 11 2-8 8 2 11-10-5-10 5 2-11-8-8 11-2z" fill="url(#gold)"/><text x="210" y="310" fill="#D8B66D" font-family="Georgia,serif" font-size="13" letter-spacing="3" text-anchor="middle">AL-MASJID AN-NABAWI · MADINAH</text></svg></div>
     </section>
 
     <section id="outils">
