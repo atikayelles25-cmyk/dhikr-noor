@@ -296,13 +296,6 @@ select,input[type="text"] { background:var(--surface); color:var(--text); border
       const arabic=payload.data.find(x=>x.edition.identifier==='quran-uthmani') || payload.data[0];
       const french=payload.data.find(x=>x.edition.identifier==='fr.hamidullah');
       let recitation=payload.data.find(x=>x.edition.identifier===reciter);
-      if(reciter==='ar.shuraim' && (!recitation || !recitation.ayahs?.some(ayah=>ayah.audio))) {
-        const fallbackResponse=await fetch(`https://api.alquran.cloud/v1/surah/${encodeURIComponent(number)}/ar.shuraim`);
-        if(fallbackResponse.ok) {
-          const fallbackPayload=await fallbackResponse.json();
-          if(fallbackPayload.data?.ayahs?.some(ayah=>ayah.audio)) recitation=fallbackPayload.data;
-        }
-      }
       if(!arabic || !french || (!specialReciter && !recitation)) throw new Error('Edition unavailable');
       currentFullSurahAudio='';
       if(reciter==='special.badr') currentFullSurahAudio=`https://cdn.mp3quran.net/audio/badr-turki/r1/${String(number).padStart(3,'0')}.mp3`;
