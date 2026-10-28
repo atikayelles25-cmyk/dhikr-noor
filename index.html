@@ -45,7 +45,7 @@ body { margin: 0; font-family: var(--site-font-body); background: var(--site-bac
 button, input, select { font: inherit; }
 button { cursor: pointer; }
 button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid #C49A43; outline-offset: 3px; }
-.topbar { background: #050505; color: var(--site-on-primary); border-bottom: 1px solid rgba(216,182,109,.42); }
+.topbar { background: linear-gradient(110deg,#063D30,#07513D); color:#FFFDF6; border-bottom:2px solid #D8B66D; box-shadow:0 4px 18px rgba(6,54,40,.12); }
 .nav { max-width: 1180px; margin: auto; padding: 16px 22px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
 .brand { display:flex; align-items:center; gap:12px; color:inherit; text-decoration:none; }
 .logo { width:44px; height:44px; border:1px solid rgba(226,197,127,.8); border-radius:50%; display:grid; place-items:center; color:var(--site-secondary); font-size:25px; background:rgba(255,255,255,.06); }
@@ -58,7 +58,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .lang-btn, .menu-btn { border:1px solid rgba(255,255,255,.35); color:#fff; background:transparent; padding:9px 12px; border-radius:999px; }
 .menu-btn { display:none; }
 main { max-width:1180px; margin:auto; padding:28px 22px 64px; }
-.hero { position:relative; display:grid; grid-template-columns:1.1fr .9fr; gap:28px; align-items:center; background:radial-gradient(ellipse at 80% 50%,#292114 0%,#111 46%,#080808 100%); color:#F8F2E5; border:1px solid rgba(216,182,109,.55); border-radius:calc(28px * var(--site-radius-scale)); padding:clamp(28px,5vw,58px); overflow:hidden; box-shadow:var(--shadow); }
+.hero { position:relative; display:grid; grid-template-columns:1.1fr .9fr; gap:28px; align-items:center; background:radial-gradient(ellipse at 80% 50%,#E8E1C9 0%,#FFFDF6 46%,#F7F0DE 100%); color:#12382D; border:1px solid rgba(216,182,109,.9); border-radius:calc(28px * var(--site-radius-scale)); padding:clamp(28px,5vw,58px); overflow:hidden; box-shadow:var(--shadow); }
 .hero:after { content:"☾"; position:absolute; right:8%; top:-58px; font-size:clamp(170px,27vw,330px); color:var(--site-secondary); opacity:calc(.12 * var(--site-decoration-opacity)); pointer-events:none; line-height:1; }
 .eyebrow { color:var(--site-secondary); text-transform:uppercase; letter-spacing:.16em; font-size:.76rem; font-weight:800; }
 h1,h2,h3 { font-family:var(--site-font-heading); }
@@ -157,7 +157,7 @@ select,input[type="text"] { background:var(--surface); color:var(--text); border
 @media (max-width:800px) { .hero { grid-template-columns:1fr; } .hero-art { min-height:190px; } .grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .nav-links { display:none; position:absolute; top:74px; left:12px; right:12px; background:var(--site-primary); border:1px solid rgba(255,255,255,.2); border-radius:16px; padding:10px; z-index:10; flex-direction:column; align-items:stretch; } .nav-links.open { display:flex; } .nav-links a { padding:12px; } .menu-btn { display:inline-flex; } }
 @media (max-width:560px) { main { padding:18px 14px 42px; } .nav { padding:12px 14px; } .brand small { display:none; } .hero { padding:26px 22px; border-radius:20px; } .grid,.two-col { grid-template-columns:1fr; } .section-head { align-items:start; flex-direction:column; margin-top:32px; } .section-head h2 { font-size:1.75rem; } .card { padding:19px; } .counter-display { width:165px; height:165px; } .tasbih-beads { width:min(100%,280px); } .searchbar { flex-direction:column; } .phrase-top { flex-direction:column; } }
 @media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior:auto !important; transition:none !important; } }
-</style>
+.medina-gallery { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:18px; } .medina-view { margin:0; min-width:0; overflow:hidden; border:1px solid var(--border); border-radius:16px; background:#FFF; } .medina-view img { display:block; width:100%; aspect-ratio:4/3; object-fit:cover; background:linear-gradient(135deg,#064E3B,#0D6B50 55%,#D8B66D); color:#FFF; } .medina-view img.image-failed { display:none; } .medina-view:has(img.image-failed)::before { content:"☾\\A\\A المسجد النبوي\\A\\A Médine · Mosquée et lieux de prière"; white-space:pre-line; display:grid; place-items:center; text-align:center; min-height:200px; padding:20px; color:#FFFDF6; font-family:Georgia,serif; line-height:1.8; background:radial-gradient(circle at 50% 35%,#14765A,#064E3B 65%,#032F25); border-bottom:2px solid #D8B66D; } .medina-view figcaption { padding:10px 12px; color:#064E3B; font-size:.85rem; } .medina-note { color:var(--muted); font-size:.85rem; line-height:1.6; margin:12px 0 0; }\n</style>
 </head>
 <body>
 <div id="app" data-sites-preview-theme="custom">
@@ -189,6 +189,14 @@ select,input[type="text"] { background:var(--surface); color:var(--text); border
         <div class="hero-actions"><a class="btn btn-gold" href="#compteur" data-fr="Commencer un dhikr →" data-ar="ابدأ الذكر ←">Commencer un dhikr →</a><a class="btn btn-outline" href="#invocations" data-fr="Explorer les invocations" data-ar="استكشف الأذكار">Explorer les invocations</a></div>
       </div>
       <div class="hero-art" aria-label="Illustration stylisée de la Mosquée du Prophète à Médine" role="img"><svg class="medina-mosque" viewBox="0 0 420 330" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="gold" x1="0" y1="0" x2="0.9" y2="1"><stop offset="0" stop-color="#F7E5AE"/><stop offset=".5" stop-color="#D8B66D"/><stop offset="1" stop-color="#8E672B"/></linearGradient></defs><circle cx="210" cy="158" r="145" fill="none" stroke="url(#gold)" stroke-opacity=".35"/><circle cx="210" cy="158" r="126" fill="none" stroke="url(#gold)" stroke-opacity=".2" stroke-dasharray="3 8"/><g fill="#111" stroke="url(#gold)" stroke-width="2.2" stroke-linejoin="round"><path d="M65 260V191h30v-21h18v21h20v-33h14v33h18v-48q0-38 35-57q35 19 35 57v48h18v-33h14v33h20v-21h18v21h30v69z"/><path d="M157 143q0-37 43-58q43 21 43 58v14H157z" fill="#D8B66D" fill-opacity=".17"/><path d="M181 260v-60q0-22 19-34q19 12 19 34v60"/><path d="M54 260V105h13V80h8v25h13v155M332 260V105h13V80h8v25h13v155"/><path d="M47 80h47l-23-32zM325 80h47l-23-32z" fill="url(#gold)"/><path d="M70 48V30h4V18h5v12h4v18M348 48V30h4V18h5v12h4v18" fill="url(#gold)"/><path d="M36 260h348M48 275h324" stroke-width="3"/><path d="M100 260v-25q0-15 12-15t12 15v25M142 260v-25q0-15 12-15t12 15v25M254 260v-25q0-15 12-15t12 15v25M296 260v-25q0-15 12-15t12 15v25" fill="#D8B66D" fill-opacity=".18"/><path d="M200 95v-22h20v22M207 73V60h6v13" fill="url(#gold)"/></g><path d="M210 34l5 10 11 2-8 8 2 11-10-5-10 5 2-11-8-8 11-2z" fill="url(#gold)"/><text x="210" y="310" fill="#D8B66D" font-family="Georgia,serif" font-size="13" letter-spacing="3" text-anchor="middle">AL-MASJID AN-NABAWI · MADINAH</text></svg></div>
+    </section>
+
+    <section id="medine" aria-labelledby="medinaTitle">
+      <div class="section-head"><div><h2 id="medinaTitle" data-fr="Au cœur de Médine" data-ar="في رحاب المدينة المنورة">Au cœur de Médine</h2><p data-fr="Découvre les lieux saints dans un espace de contemplation." data-ar="اكتشف الأماكن المقدسة في مساحة من السكينة.">Découvre les lieux saints dans un espace de contemplation.</p></div></div>
+      <div class="card"><div class="medina-gallery">
+        <figure class="medina-view"><img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&w=900&q=85" alt="Architecture intérieure d'une mosquée, arches et décor islamique" loading="lazy" onerror="this.classList.add('image-failed')"><figcaption data-fr="L’intérieur de la mosquée — arches et lumière" data-ar="داخل المسجد — أقواس ونور">L’intérieur de la mosquée — arches et lumière</figcaption></figure>
+        <figure class="medina-view"><img src="https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?auto=format&fit=crop&w=900&q=85" alt="Vue d’un espace de prière dans un lieu saint de Médine" loading="lazy" onerror="this.classList.add('image-failed')"><figcaption data-fr="Médine — un lieu de prière et de sérénité" data-ar="المدينة المنورة — مكان للصلاة والسكينة">Médine — un lieu de prière et de sérénité</figcaption></figure>
+      </div><p class="medina-note" data-fr="Si une photo ne se charge pas, un visuel de secours s’affiche." data-ar="إذا لم يتم تحميل الصورة، فسيظهر تصميم بديل.">Si une photo ne se charge pas, un visuel de secours s’affiche.</p></div>
     </section>
 
     <section id="outils">
@@ -278,6 +286,26 @@ select,input[type="text"] { background:var(--surface); color:var(--text); border
   let goalMode = String(safeStore.get('dhikr-noor-goal-mode', '33'));
   let customGoalValue = Number(safeStore.get('dhikr-noor-custom-goal', 50)) || 50;
   let toastTimer;
+  let dhikrAudioContext;
+  function playBeadClick() {
+    try {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) return;
+      dhikrAudioContext = dhikrAudioContext || new AudioContextClass();
+      if (dhikrAudioContext.state === 'suspended') dhikrAudioContext.resume();
+      const now = dhikrAudioContext.currentTime;
+      const oscillator = dhikrAudioContext.createOscillator();
+      const gain = dhikrAudioContext.createGain();
+      oscillator.type = 'triangle';
+      oscillator.frequency.setValueAtTime(1150, now);
+      oscillator.frequency.exponentialRampToValueAtTime(620, now + 0.035);
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.exponentialRampToValueAtTime(0.12, now + 0.004);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.055);
+      oscillator.connect(gain); gain.connect(dhikrAudioContext.destination);
+      oscillator.start(now); oscillator.stop(now + 0.06);
+    } catch { /* Le compteur reste utilisable si le son est bloqué. */ }
+  }
   const phrases = [
     { id:'salām', titleFr:'Salutation', titleAr:'السلام', arabic:'السَّلَامُ عَلَيْكُمْ', translit:'As-salāmu ʿalaykum', meaningFr:'Que la paix soit sur vous.', meaningAr:'السلام عليكم.', category:'Salutation' },
     { id:'subhan', titleFr:'Gloire à Allah', titleAr:'التسبيح', arabic:'سُبْحَانَ اللَّهِ', translit:'Subḥāna Allāh', meaningFr:'Gloire à Allah.', meaningAr:'تنزيه الله عن كل نقص.', category:'Dhikr' },
@@ -452,7 +480,8 @@ select,input[type="text"] { background:var(--surface); color:var(--text); border
   $('goalSelect').addEventListener('change',e=>{goalMode=e.target.value;saveCounter();renderCounter();});
   $('customGoal').addEventListener('change',e=>{customGoalValue=Math.min(10000,Math.max(1,Number(e.target.value)||1));saveCounter();renderCounter();});
   $('customDhikr').addEventListener('input',renderCounter);
-  $('plusOne').addEventListener('click',()=>{count++;saveCounter();renderCounter();if(count===currentGoal())showToast(t('Objectif atteint, bravo !','أحسنت، لقد حققت هدفك!'));});
+  const incrementDhikr=()=>{playBeadClick();count++;saveCounter();renderCounter();if(count===currentGoal())showToast(t('Objectif atteint, bravo !','أحسنت، لقد حققت هدفك!'));};
+  $('plusOne').addEventListener('click',incrementDhikr);
   $('minusOne').addEventListener('click',()=>{count=Math.max(0,count-1);saveCounter();renderCounter();});
   $('resetCounter').addEventListener('click',()=>{count=0;saveCounter();renderCounter();showToast(t('Compteur réinitialisé.','تمت إعادة ضبط العداد.'));});
   $('phraseSearch').addEventListener('input',renderPhrases); $('searchClear').addEventListener('click',()=>{$('phraseSearch').value='';renderPhrases();$('phraseSearch').focus();});
