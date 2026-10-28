@@ -299,7 +299,7 @@ select,input[type="text"] { background:var(--surface); color:var(--text); border
       let recitation=payload.data.find(x=>x.edition.identifier===reciter);
       if(!arabic || !french || (!specialReciter && !separateShuraim && !recitation)) throw new Error('Edition unavailable');
       currentFullSurahAudio='';
-      if(separateShuraim) currentFullSurahAudio=`https://cdn.islamic.network/quran/audio-surah/128/ar.shuraim/${number}.mp3`;
+      if(separateShuraim) currentFullSurahAudio=`https://server7.mp3quran.net/shur/${String(number).padStart(3,'0')}.mp3`;
       if(reciter==='special.badr') currentFullSurahAudio=`https://cdn.mp3quran.net/audio/badr-turki/r1/${String(number).padStart(3,'0')}.mp3`;
       if(reciter==='special.yasser') {
         const audioResponse=await fetch(`https://quranapi.pages.dev/api/audio/${encodeURIComponent(number)}.json`);
