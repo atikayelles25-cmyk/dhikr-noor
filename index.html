@@ -89,6 +89,17 @@ h1 { font-size:calc(clamp(2.4rem,5vw,4.6rem) * var(--site-heading-scale)); line-
 .two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
 .counter-card { background:var(--surface); border:1px solid var(--border); border-radius:calc(22px * var(--site-radius-scale)); padding:26px; text-align:center; }
 .counter-display { width:190px; height:190px; margin:20px auto; border-radius:50%; border:8px solid var(--site-secondary); box-shadow:inset 0 0 0 7px var(--surface-soft); display:grid; place-items:center; background:var(--surface); }
+.tasbih-wrap { display:flex; flex-direction:column; align-items:center; gap:14px; margin:22px auto 18px; }
+.tasbih-beads { width:min(100%,310px); aspect-ratio:1; position:relative; border-radius:50%; margin:auto; }
+.tasbih-bead { position:absolute; left:50%; top:50%; width:clamp(12px,4vw,19px); height:clamp(12px,4vw,19px); border-radius:50%; background:linear-gradient(145deg,#E7D39A,#A98238); border:2px solid #F7E8BD; box-shadow:0 2px 5px rgba(20,30,20,.18); transform:translate(-50%,-50%); }
+.tasbih-bead.active { background:var(--site-primary); border-color:var(--site-secondary); box-shadow:0 0 0 3px rgba(216,182,109,.2); }
+.tasbih-tassel { width:5px; height:28px; background:var(--site-secondary); border-radius:0 0 8px 8px; margin-top:-14px; }
+.tasbih-center { position:absolute; inset:30%; border:2px solid var(--site-secondary); border-radius:50%; display:flex; flex-direction:column; align-items:center; justify-content:center; background:var(--surface); box-shadow:inset 0 0 0 5px var(--surface-soft); }
+.tasbih-center .counter-number { font-size:clamp(2.1rem,8vw,3.5rem); line-height:1.1; }
+.tasbih-center .counter-label { margin-top:5px; }
+.tasbih-progress { color:var(--muted); font-size:.9rem; text-align:center; }
+.tasbih-next { min-height:58px; min-width:170px; font-size:1.1rem; box-shadow:0 5px 0 rgba(0,0,0,.12); }
+.tasbih-next:active { transform:translateY(3px); box-shadow:0 2px 0 rgba(0,0,0,.12); }
 .counter-number { font:600 3.5rem var(--site-font-heading); color:var(--site-primary); }
 .counter-label { font-size:.78rem; color:var(--muted); }
 .counter-controls { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
@@ -143,7 +154,7 @@ select,input[type="text"] { background:var(--surface); color:var(--text); border
 [hidden] { display:none !important; }
 @media (prefers-color-scheme: dark) { .counter-number { color:#D8B66D; } }
 @media (max-width:800px) { .hero { grid-template-columns:1fr; } .hero-art { min-height:190px; } .grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .nav-links { display:none; position:absolute; top:74px; left:12px; right:12px; background:var(--site-primary); border:1px solid rgba(255,255,255,.2); border-radius:16px; padding:10px; z-index:10; flex-direction:column; align-items:stretch; } .nav-links.open { display:flex; } .nav-links a { padding:12px; } .menu-btn { display:inline-flex; } }
-@media (max-width:560px) { main { padding:18px 14px 42px; } .nav { padding:12px 14px; } .brand small { display:none; } .hero { padding:26px 22px; border-radius:20px; } .grid,.two-col { grid-template-columns:1fr; } .section-head { align-items:start; flex-direction:column; margin-top:32px; } .section-head h2 { font-size:1.75rem; } .card { padding:19px; } .counter-display { width:165px; height:165px; } .searchbar { flex-direction:column; } .phrase-top { flex-direction:column; } }
+@media (max-width:560px) { main { padding:18px 14px 42px; } .nav { padding:12px 14px; } .brand small { display:none; } .hero { padding:26px 22px; border-radius:20px; } .grid,.two-col { grid-template-columns:1fr; } .section-head { align-items:start; flex-direction:column; margin-top:32px; } .section-head h2 { font-size:1.75rem; } .card { padding:19px; } .counter-display { width:165px; height:165px; } .tasbih-beads { width:min(100%,280px); } .searchbar { flex-direction:column; } .phrase-top { flex-direction:column; } }
 @media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior:auto !important; transition:none !important; } }
 </style>
 </head>
@@ -222,7 +233,12 @@ select,input[type="text"] { background:var(--surface); color:var(--text); border
         <div class="counter-card">
           <div class="form-row"><label for="dhikrType" data-fr="Formule" data-ar="الذكر">Formule</label><select id="dhikrType"><option value="subhan">سُبْحَانَ اللَّهِ — Subhan Allah</option><option value="hamd">الْحَمْدُ لِلَّهِ — Alhamdulillah</option><option value="akbar">اللَّهُ أَكْبَرُ — Allahu Akbar</option><option value="custom" data-fr="Formule personnelle" data-ar="ذكر مخصص">Formule personnelle</option></select></div>
           <div id="customWrap" hidden style="margin-top:12px"><label for="customDhikr" data-fr="Ta formule (facultatif)" data-ar="ذكرك (اختياري)">Ta formule (facultatif)</label><input id="customDhikr" type="text" maxlength="100" placeholder="Écris ta formule" /></div>
-          <div class="counter-display" aria-live="polite" aria-atomic="true"><div><div class="counter-number" id="counterValue">0</div><div class="counter-label" data-fr="RÉPÉTITIONS" data-ar="تكرارات">RÉPÉTITIONS</div></div></div>
+          <div class="tasbih-wrap" aria-label="Chapelet numérique interactif">
+            <div class="tasbih-beads" id="tasbihBeads" aria-hidden="true"><div class="tasbih-center" aria-live="polite" aria-atomic="true"><div class="counter-number" id="counterValue">0</div><div class="counter-label" data-fr="RÉPÉTITIONS" data-ar="تكرارات">RÉPÉTITIONS</div></div></div>
+            <div class="tasbih-tassel" aria-hidden="true"></div>
+            <div class="tasbih-progress" id="tasbihProgress">0 sur 33 perles</div>
+            <button class="btn btn-primary tasbih-next" id="plusOne" type="button" data-fr="＋ Compter le dhikr" data-ar="＋ عدّ الذكر">＋ Compter le dhikr</button>
+          </div>
           <div class="form-row"><label for="goalSelect" data-fr="Objectif" data-ar="الهدف">Objectif</label><select id="goalSelect"><option value="33">33</option><option value="100">100</option><option value="custom">Autre</option></select><input id="customGoal" type="number" min="1" max="10000" value="50" aria-label="Objectif personnalisé" hidden style="width:95px" /></div>
           <div class="progress-track" role="progressbar" aria-label="Progression vers l’objectif" aria-valuemin="0" aria-valuemax="33" aria-valuenow="0" id="progressTrack"><div class="progress-fill" id="progressFill"></div></div><div class="note" id="progressText">0 sur 33</div>
           <div class="counter-controls" style="margin-top:18px"><button class="btn btn-primary" id="plusOne" type="button">＋ 1</button><button class="btn btn-soft" id="minusOne" type="button">− 1</button><button class="btn btn-soft" id="resetCounter" type="button" data-fr="Réinitialiser" data-ar="إعادة الضبط">Réinitialiser</button></div>
@@ -365,6 +381,18 @@ select,input[type="text"] { background:var(--surface); color:var(--text); border
   }
   function currentGoal() { if (goalMode === 'custom') return Math.min(10000, Math.max(1, Number(customGoalValue)||1)); return Number(goalMode)||33; }
   function saveCounter() { safeStore.set('dhikr-noor-count',count); safeStore.set('dhikr-noor-type',selectedType); safeStore.set('dhikr-noor-goal-mode',goalMode); safeStore.set('dhikr-noor-custom-goal',customGoalValue); }
+  function renderTasbih() {
+    const wrap=$('tasbihBeads'); if(!wrap)return;
+    wrap.querySelectorAll('.tasbih-bead').forEach(bead=>bead.remove());
+    const goal=currentGoal(), total=33, progress=count%total;
+    for(let i=0;i<total;i++){
+      const bead=document.createElement('span'); bead.className='tasbih-bead'+(i<progress?' active':'');
+      const angle=(i/total)*Math.PI*2-Math.PI/2, radius=44;
+      bead.style.left=(50+Math.cos(angle)*radius)+'%'; bead.style.top=(50+Math.sin(angle)*radius)+'%';
+      wrap.append(bead);
+    }
+    $('tasbihProgress').textContent=t(`${progress} sur ${total} perles · objectif ${goal}`,`${progress} من ${total} خرزة · الهدف ${goal}`);
+  }
   function renderCounter() {
     $('counterValue').textContent = String(count);
     $('dhikrType').value = selectedType;
@@ -380,6 +408,7 @@ select,input[type="text"] { background:var(--surface); color:var(--text); border
     $('progressFill').style.width=pct+'%'; $('progressText').textContent=t(`${count} sur ${goal} · ${pct}% de l’objectif`,`${count} من ${goal} · ${pct}% من الهدف`);
     $('progressTrack').setAttribute('aria-valuemax',String(goal)); $('progressTrack').setAttribute('aria-valuenow',String(Math.min(count,goal)));
     $('counterSaved').textContent=t('Sauvegarde locale activée si ton navigateur l’autorise.','يُحفَظ التقدّم محليًا إذا سمح المتصفح بذلك.');
+    renderTasbih();
   }
   function renderPhrases() {
     const query=$('phraseSearch').value.trim().toLocaleLowerCase();
