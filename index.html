@@ -343,9 +343,14 @@ select,input[type="text"] { background:var(--surface); color:var(--text); border
   }
   const phrases = [
     { id:'salām', titleFr:'Salutation', titleAr:'السلام', arabic:'السَّلَامُ عَلَيْكُمْ', translit:'As-salāmu ʿalaykum', meaningFr:'Que la paix soit sur vous.', meaningAr:'السلام عليكم.', category:'Salutation' },
+    { id:'bismillah', titleFr:'Au nom d’Allah', titleAr:'البسملة', arabic:'بِسْمِ اللَّهِ', translit:'Bismi Allāh', meaningFr:'Au nom d’Allah.', meaningAr:'باسم الله.', category:'Dhikr' },
     { id:'subhan', titleFr:'Gloire à Allah', titleAr:'التسبيح', arabic:'سُبْحَانَ اللَّهِ', translit:'Subḥāna Allāh', meaningFr:'Gloire à Allah.', meaningAr:'تنزيه الله عن كل نقص.', category:'Dhikr' },
     { id:'hamd', titleFr:'Louange à Allah', titleAr:'الحمد', arabic:'الْحَمْدُ لِلَّهِ', translit:'Al-ḥamdu lillāh', meaningFr:'La louange appartient à Allah.', meaningAr:'الثناء على الله وحمده.', category:'Dhikr' },
-    { id:'akbar', titleFr:'Allah est le plus grand', titleAr:'التكبير', arabic:'اللَّهُ أَكْبَرُ', translit:'Allāhu akbar', meaningFr:'Allah est le plus grand.', meaningAr:'الله أكبر من كل شيء.', category:'Dhikr' }
+    { id:'akbar', titleFr:'Allah est le plus grand', titleAr:'التكبير', arabic:'اللَّهُ أَكْبَرُ', translit:'Allāhu akbar', meaningFr:'Allah est le plus grand.', meaningAr:'الله أكبر من كل شيء.', category:'Dhikr' },
+    { id:'tahlil', titleFr:'L’unicité d’Allah', titleAr:'التهليل', arabic:'لَا إِلَٰهَ إِلَّا اللَّهُ', translit:'Lā ilāha illa Allāh', meaningFr:'Il n’y a aucune divinité digne d’adoration sauf Allah.', meaningAr:'لا معبود بحق إلا الله.', category:'Dhikr' },
+    { id:'istighfar', titleFr:'Demander pardon', titleAr:'الاستغفار', arabic:'أَسْتَغْفِرُ اللَّهَ', translit:'Astaghfiru Allāh', meaningFr:'Je demande pardon à Allah.', meaningAr:'أطلب المغفرة من الله.', category:'Dhikr' },
+    { id:'hawqala', titleFr:'S’en remettre à Allah', titleAr:'الحوقلة', arabic:'لَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ', translit:'Lā ḥawla wa lā quwwata illā bi-Allāh', meaningFr:'Il n’y a de force ni de puissance qu’en Allah.', meaningAr:'لا تحول عن معصية الله إلا بعصمته، ولا قوة على طاعته إلا بتوفيقه.', category:'Dhikr' },
+    { id:'salawat', titleFr:'Prière sur le Prophète ﷺ', titleAr:'الصلاة على النبي ﷺ', arabic:'اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ', translit:'Allāhumma ṣalli ʿalā Muḥammad', meaningFr:'Ô Allah, accorde Tes bénédictions à Muhammad.', meaningAr:'اللهم أثنِ على محمد وباركه.', category:'Salawat' }
   ];
   const typeInfo = {
     subhan:{arabic:'سُبْحَانَ اللَّهِ',translit:'Subhan Allah',meaning:'Gloire à Allah. Traduction du sens, donnée à titre indicatif.'},
