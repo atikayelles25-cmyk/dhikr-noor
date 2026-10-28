@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://atikayelles25-cmyk.github.io/dhikr-noor/sitemap.xml
